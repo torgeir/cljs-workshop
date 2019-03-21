@@ -1,0 +1,19 @@
+html,
+body {
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #558;
+  background-color: #282a36;
+}
+
+.app {
+  display: grid;
+  height: calc(100vh - 5rem);
+  width: calc(100vw - 2rem);
+  padding: 2.5rem 1rem;
+}
