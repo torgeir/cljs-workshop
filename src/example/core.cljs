@@ -1,16 +1,18 @@
 (ns example.core
-  (:require [clojure.pprint :as pp]
-            [goog.dom :as dom]))
+  (:require [cljs-test-display.core])
+  (:require-macros [cljs.test :refer [deftest is testing run-tests]]))
 
 
 (enable-console-print!)
 
 
-(defonce body (dom/getElement "app"))
-(prn body)
+(deftest it-adds-vectors
+  (is (= [1 2 3 4]
+         (map (partial apply +)
+              (for [x [1 2]
+                    y [1 2]]
+                [x y])))))
 
 
-(pp/pprint
-  (for [x (range 0 4)
-        y (range 0 4)]
-    [x y]))
+(run-tests (cljs-test-display.core/init! "app")
+           'example.core)
