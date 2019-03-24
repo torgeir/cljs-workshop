@@ -1,11 +1,26 @@
 # Minimal `figwheel-main` playground
 
-## Install
+## Install and run
 
-https://clojure.org/guides/getting_started
-
-## Run
+### os x
 
 ```sh
-clojure -m figwheel.main -b dev
+brew update
+brew install clojure
 ```
+
+```sh
+clj -m figwheel.main -b dev
+```
+
+### windows
+
+```sh
+.\clj.exe -m figwheel.main -b dev
+```
+
+## More
+
+https://cljs.info/cheatsheet/
+
+https://clojurescript.org/guides/quick-start
