@@ -1,6 +1,5 @@
 (ns example.core
-  (:require [clojure.pprint :as pp]
-            [goog.dom :as dom]))
+  (:require [goog.dom :as dom]))
 
 
 (enable-console-print!)
@@ -10,7 +9,5 @@
 (prn body)
 
 
-(pp/pprint
-  (for [x (range 0 4)
-        y (range 0 4)]
-    [x y]))
+(set! (.-backgroundColor (.-style body)) "gray")
+;; (set! (.-backgroundColor (.-style body)) "green")

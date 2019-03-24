@@ -7,13 +7,13 @@ body {
 }
 
 body {
-  color: #558;
+  color: #efefef;
+  font-size: 1.5rem;
   background-color: #282a36;
 }
 
-.app {
-  display: grid;
-  height: calc(100vh - 5rem);
-  width: calc(100vw - 2rem);
-  padding: 2.5rem 1rem;
+#app {
+  height: 100vh;
+  width: 100vw;
+  padding: 1rem;
 }
