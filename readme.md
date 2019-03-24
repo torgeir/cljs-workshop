@@ -7,5 +7,5 @@ https://clojure.org/guides/getting_started
 ## Run
 
 ```sh
-./run.sh
+clojure -m figwheel.main -b dev
 ```
