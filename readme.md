@@ -27,9 +27,18 @@ Install extensions
 - Calva Clojure Formatter
 - Calva Paredit
 
-Open `Settings -> Extensions -> Calva -> Calva: Start CLJSREPLCommand`, paste
-the following `(do (require '[cider.piggieback :refer [cljs-repl]]
-'[figwheel.main.api :refer [repl-env]]) (cljs-repl (repl-env "dev")))`, and save it.
+Open `Settings -> Extensions -> Calva -> Calva: Start CLJSREPLCommand`, paste the following and save it.
+
+```
+(do
+  (require '[cider.piggieback :refer [cljs-repl]]
+           '[figwheel.main.api :refer [repl-env]])
+  (cljs-repl (repl-env "dev")))
+```
+
+Restart VSCode.
+
+Evaluate something in the browser from your editor with `ctrl+alt+v e`.
 
 ### Emacs
 
