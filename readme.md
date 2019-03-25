@@ -1,25 +1,43 @@
 # Minimal `figwheel-main` playground
 
-## Install and run
+## Install
 
-### os x
+### OS X
 
 ```sh
 brew update
 brew install clojure
 ```
 
-```sh
-clj -m figwheel.main -b dev
+### Windows
+
+Use the provided `.\clj.exe` as a replacement for the `clj` command.
+
+## REPL on steroids
+
+```
+clj -Arepl
 ```
 
-### windows
+### VSCode
 
-```sh
-.\clj.exe -m figwheel.main -b dev
-```
+Install extensions
 
-## More
+- Calva: Clojure & Clojurescript Interactive Programming
+- Calva Clojure Formatter
+- Calva Paredit
+
+Open `Settings -> Extensions -> Calva -> Calva: Start CLJSREPLCommand`, paste
+the following `(do (require '[cider.piggieback :refer [cljs-repl]]
+'[figwheel.main.api :refer [repl-env]]) (cljs-repl (repl-env "dev")))`, and save it.
+
+### Emacs
+
+Install cider.
+
+Run `cider-jack-in-cljs`.
+
+## Resource
 
 https://cljs.info/cheatsheet/
 
