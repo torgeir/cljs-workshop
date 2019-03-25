@@ -3,7 +3,10 @@
            com.bhauman/figwheel-main {:mvn/version "0.2.0"}}
  :paths   ["src" "resources" "target"]
  :aliases {:repl {:main-opts  ["-i" "init-repl-for-calva.clj"]
-                  :extra-deps {com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}
-                               cider/cider-nrepl               {:mvn/version "0.21.1"}
-                               cider/piggieback                {:mvn/version "0.4.0"}
-                               nrepl                           {:mvn/version "0.6.0"}}}}}
+                  :extra-deps {;; improve interactive repl
+                               com.bhauman/rebel-readline-cljs {:mvn/version "0.1.4"}
+
+                               ;; allow for connecting from editors
+                               nrepl             {:mvn/version "0.6.0"}
+                               cider/piggieback  {:mvn/version "0.4.0"}
+                               cider/cider-nrepl {:mvn/version "0.21.1"}}}}}
