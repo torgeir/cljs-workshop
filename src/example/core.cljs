@@ -1,13 +1,14 @@
 (ns example.core
-  (:require [goog.dom :as dom]))
+  (:require [clojure.pprint :as pp]
+            [goog.dom :as dom]
+            [example.perlin_flow :as pf]
+            [example.tileset :as ts]))
 
 
 (enable-console-print!)
 
 
-(defonce body (dom/getElement "app"))
-(prn body)
+(defonce sketch (dom/getElement "sketch"))
 
 
-(set! (.-backgroundColor (.-style body)) "gray")
-;; (set! (.-backgroundColor (.-style body)) "green")
+(defonce s (pf/create sketch))
