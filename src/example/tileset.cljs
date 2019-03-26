@@ -34,7 +34,7 @@
       (q/translate (- (* (- break 1) cxdim)) cydim)
       (q/translate cxdim 0))))
 
-(defn create-tileset [canvas]
+(defn create [canvas]
   (q/defsketch tileset
     :host canvas
     :size [w h]

@@ -26,7 +26,7 @@
          :vy (update-vel (:vx p) (Math/sin (:adir p)))
          :adir (update-acc (:adir p) (:x p) (:y p))))
 
-(defn create-perlin-flow [canvas]
+(defn create [canvas]
   (q/defsketch perlin-flow
     :host canvas
     :size [w h]
