@@ -10,10 +10,9 @@ body {
   color: #efefef;
   font-size: 1.5rem;
   background-color: #282a36;
+  text-align: center;
 }
 
-#app {
-  height: 100vh;
-  width: 100vw;
-  padding: 1rem;
+#sketch {
+  margin: 30px;
 }
