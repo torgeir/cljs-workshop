@@ -1,4 +1,4 @@
-# Minimal `figwheel-main` playground
+# Minimal `cljs` playground with repl and hot reloading support
 
 ## Install
 
