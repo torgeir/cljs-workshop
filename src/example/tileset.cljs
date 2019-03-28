@@ -8,18 +8,20 @@
 (def spacing 1)
 (def depth 8)
 
+
 (defn generate-square [depth]
   (if (= depth 0)
     (if (< (Math/random) .7) \w \b)
-    (let [ul (generate-square (- depth 1))
-          ur (generate-square (- depth 1))
-          dl (generate-square (- depth 1))
-          dr (generate-square (- depth 1))
+    (let [ul     (generate-square (- depth 1))
+          ur     (generate-square (- depth 1))
+          dl     (generate-square (- depth 1))
+          dr     (generate-square (- depth 1))
           choose (* (+ depth 2) (Math/random))]
       (cond
         (< choose 0.4) \w
-        (< choose 2) \b
-        :else [ul \- ur \/ dl \- dr]))))
+        (< choose 2)   \b
+        :else          [ul \- ur \/ dl \- dr]))))
+
 
 (defn draw-square [cells size]
   (doseq [cell cells]
@@ -30,6 +32,7 @@
       \/ (q/translate (- size) size)
       (draw-square cell (/ size 2))))
   (q/translate (- size) (- size)))
+
 
 (defn create [canvas]
   (q/defsketch tileset
