@@ -37,7 +37,7 @@
 
 
 (defn draw [s]
-  (q/fill 100 100 100 25)
+  (q/fill 255 0 100 25)
   (doseq [pnt s]
     (q/ellipse (:x pnt) (:y pnt) 1 1)))
 
@@ -58,7 +58,7 @@
     :setup (fn []
              (q/no-stroke)
              (q/background 20)
-             (particles size))
+             (particles 1000))
     :update (fn [s] (map update-particle s))
     :draw draw
     :middleware [m/fun-mode]))
