@@ -1,4 +1,5 @@
-(ns example.tutorial)
+(ns example.tutorial
+  (:require [goog.dom :as dom]))
 
 
 ;; "everything is a list"
