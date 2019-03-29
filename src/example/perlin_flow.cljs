@@ -3,14 +3,17 @@
             [quil.middleware :as m]))
 
 
-(def w 1200)
-(def h 800)
+(def w (. js/document.body -clientWidth))
+(def h (. js/document.body -clientHeight))
 (def ndim 350)
-(def size 500)
 
 
 (defn particle []
-  {:x (* w (Math/random)) :y (* h (Math/random)) :vx 0 :vy 0 :adir 0})
+  {:x    (* w (Math/random))
+   :y    (* h (Math/random))
+   :vx   0
+   :vy   0
+   :adir 0})
 
 
 (defn particles [n]
