@@ -36,7 +36,7 @@ Open `Settings -> Extensions -> Calva -> Calva: Start CLJSREPLCommand`, paste th
 (do
   (require '[cider.piggieback :refer [cljs-repl]]
            '[figwheel.main.api :refer [repl-env]])
-  (cljs-repl (repl-env "dev") :output-dir “target/public/cljs-out/dev”))
+  (cljs-repl (repl-env "dev") :output-dir "target/public/cljs-out/dev"))
 ```
 
 Restart VSCode.
