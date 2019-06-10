@@ -5,12 +5,15 @@
             [polygram.dom :as dom]
             [polygram.timers :as timers]
             [lindenmayer.data :as lindenmayer.data]
-            [example.palette :refer [palettes nice-palette]]))
+            [example.palette :refer [find-palette palettes]]))
 
 
 ;; A2
 (def w 2481)
 (def h 3484.5)
+
+
+(def palette (find-palette "rag-taj"))
 
 
 (defn s-draw [{:keys [w h op n first]}]
@@ -23,7 +26,7 @@
       "F" (do
             (q/stroke-weight (q/random (* 30 n)))
             (apply q/stroke
-                   (rand-nth (:colors (nth palettes 5))))
+                   (rand-nth (:colors palette)))
             (let [l (q/random 1 (* 100 n))]
               (q/line 0 0 0 l)
               (q/translate 0 l)))
@@ -53,8 +56,8 @@
         :size [w h]
         :middleware [m/fun-mode]
         :setup (fn []
-                 (q/frame-rate 1000)
-                 (q/background 255)
+                 (q/frame-rate 4000)
+                 (apply q/background (:background palette))
                  {:first true
                   :n     1
                   :w     w
@@ -62,7 +65,7 @@
                   :chan  (async/to-chan
                            (lindenmayer.data/generate
                              "F"
-                             (lindenmayer.data/cool-trees 3)
+                             (lindenmayer.data/cool-trees 1)
                              5))})
         :update #'s-update
         :draw #'s-draw))

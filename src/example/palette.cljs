@@ -9,7 +9,9 @@
 (def palettes
   "Color palettes from https://kgolid.github.io/chromotome-site/"
   (map (fn [palette]
-         (update palette :colors #(map hex-to-rgb %)))
+         (-> palette
+           (update :colors #(map hex-to-rgb %))
+           (update :background hex-to-rgb)))
        [{:name       "cc239"
          :colors     ["#e3dd34" "#78496b" "#f0527f" "#a7e0e2"]
          :background "#e0eff0"}
@@ -233,11 +235,7 @@
              "#ca2847"]}])
 
 
-(defn palette [name]
+(defn find-palette [name]
   (->> palettes
     (filter #(= name (:name %)))
     (first)))
-
-
-(def nice-palette
-  (palette "ducci_h"))

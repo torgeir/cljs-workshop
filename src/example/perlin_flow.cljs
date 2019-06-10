@@ -1,13 +1,14 @@
 (ns example.perlin_flow
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [example.palette :refer [nice-palette]]))
+            [example.palette :refer [find-palette]]))
 
 ;; A2
 (def w 2481)
 (def h 3484.5)
 
 
+(def palette (find-palette "ducci_h"))
 (def noise-dim 350)
 (def diameter 10)
 
@@ -17,7 +18,7 @@
    :y     (* h (Math/random))
    :vx    0
    :vy    0
-   :color (rand-nth (:colors nice-palette))
+   :color (rand-nth (:colors palette))
    :adir  0})
 
 
@@ -62,7 +63,7 @@
     :size [w h]
     :setup (fn []
              (q/no-stroke)
-             (q/background (:background nice-palette))
+             (q/background (:background palette))
              (particles 1000))
     :update (fn [s] (map update-particle s))
     :draw draw
