@@ -1,19 +1,24 @@
 (ns example.perlin_flow
   (:require [quil.core :as q]
-            [quil.middleware :as m]))
+            [quil.middleware :as m]
+            [example.palette :refer [nice-palette]]))
+
+;; A2
+(def w 2481)
+(def h 3484.5)
 
 
-(def w (. js/document.body -clientWidth))
-(def h (. js/document.body -clientHeight))
-(def ndim 350)
+(def noise-dim 350)
+(def diameter 10)
 
 
 (defn particle []
-  {:x    (* w (Math/random))
-   :y    (* h (Math/random))
-   :vx   0
-   :vy   0
-   :adir 0})
+  {:x     (* w (Math/random))
+   :y     (* h (Math/random))
+   :vx    0
+   :vy    0
+   :color (rand-nth (:colors nice-palette))
+   :adir  0})
 
 
 (defn particles [n]
@@ -29,7 +34,7 @@
 
 
 (defn update-acc [curr x y]
-  (q/map-range (q/noise (/ x ndim) (/ y ndim))
+  (q/map-range (q/noise (/ x noise-dim) (/ y noise-dim))
                0
                1
                (- Math/PI)
@@ -37,9 +42,9 @@
 
 
 (defn draw [s]
-  (q/fill 255 0 100 25)
   (doseq [pnt s]
-    (q/ellipse (:x pnt) (:y pnt) 1 1)))
+    (apply q/fill (:color pnt))
+    (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
 
 
 (defn update-particle [p]
@@ -57,7 +62,7 @@
     :size [w h]
     :setup (fn []
              (q/no-stroke)
-             (q/background 20)
+             (q/background (:background nice-palette))
              (particles 1000))
     :update (fn [s] (map update-particle s))
     :draw draw
