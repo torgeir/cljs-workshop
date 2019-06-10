@@ -7,6 +7,7 @@
 
 
 (def palettes
+  "Color palettes from https://kgolid.github.io/chromotome-site/"
   [{:name       "cc239"
     :colors     ["#e3dd34" "#78496b" "#f0527f" "#a7e0e2"]
     :background "#e0eff0"}
@@ -238,6 +239,7 @@
 
 (def nice-palette
   (->
-      (nth palettes 0)
-    ;; (palette "rohlfs_4")
+      ;; (nth palettes 0)
+      ;; (palette "rohlfs_4")
+      (palette "ducci_h")
     (update :colors #(map hex-to-rgb %))))
