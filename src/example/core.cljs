@@ -3,7 +3,8 @@
             [goog.dom :as dom]
             [example.ellipse :as ellipse]
             [example.perlin_flow :as pf]
-            [example.tileset :as ts]))
+            [example.tileset :as ts]
+            [lindenmayer.ui :as lindenmayer.ui]))
 
 
 (enable-console-print!)
@@ -12,4 +13,4 @@
 (defonce sketch (dom/getElement "sketch"))
 
 
-(defonce s (pf/create sketch))
+(defonce s (lindenmayer.ui/create sketch))
