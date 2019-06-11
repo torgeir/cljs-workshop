@@ -1,25 +1,30 @@
 (ns example.tileset
   (:require [quil.core :as q]
-            [quil.middleware :as m]))
+            [quil.middleware :as m]
+            [example.palette :refer [palettes find-palette]]))
 
-(def canvas-size 1000)
-(def square-size 960)
-(def padding (/ (- canvas-size square-size) 2))
-(def spacing 1)
+;; A2
+(def w 2481)
+(def h 3484.5)
+
+(def padding-horizontal 100)
+(def spacing 4)
 (def depth 8)
+
+(def palette (find-palette "cc242"))
 
 
 (defn generate-square [depth]
   (if (= depth 0)
-    (if (< (Math/random) .7) \w \b)
+    (if (< (rand) .7) \w \b)
     (let [ul     (generate-square (- depth 1))
           ur     (generate-square (- depth 1))
           dl     (generate-square (- depth 1))
           dr     (generate-square (- depth 1))
-          choose (* (+ depth 2) (Math/random))]
+          choose (rand (+ depth 2))]
       (cond
-        (< choose 0.4) \w
-        (< choose 2)   \b
+        (< choose 0.1) \w
+        (< choose 3)   \b
         :else          [ul \- ur \/ dl \- dr]))))
 
 
@@ -27,26 +32,37 @@
   (doseq [cell cells]
     (case cell
       \w ()
-      \b (q/rect spacing spacing size size)
+      \b (do
+           (apply q/fill (rand-nth (:colors palette)))
+           (q/rect spacing spacing size size))
       \- (q/translate size 0)
       \/ (q/translate (- size) size)
       (draw-square cell (/ size 2))))
   (q/translate (- size) (- size)))
 
 
+(defn s-update [state]
+  (generate-square depth))
+
+
+(defn s-draw [state]
+  (apply q/background (:background palette))
+  (q/translate padding-horizontal (/ (- h
+                                        (- w (* 2 padding-horizontal)))
+                                     2))
+  (draw-square state (- (/ w 2) padding-horizontal)))
+
+
 (defn create [canvas]
   (q/defsketch tileset
     :host canvas
-    :size [canvas-size canvas-size]
+    :size [w h]
     :setup (fn []
              (q/no-stroke)
              (q/fill 0)
              (q/rect-mode :corners)
              (q/frame-rate 1)
              (generate-square depth))
-    :update (fn [s] (generate-square depth))
-    :draw (fn [s]
-            (q/background 120 150 140)
-            (q/translate padding padding)
-            (draw-square s (/ square-size 2)))
+    :update #'s-update
+    :draw #'s-draw
     :middleware [m/fun-mode]))
