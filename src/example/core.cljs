@@ -13,4 +13,11 @@
 (defonce sketch (dom/getElement "sketch"))
 
 
-(defonce s (lindenmayer.ui/create sketch))
+(defn create-sketch [n]
+  (condp = n
+    1 (perlin_flow/create sketch)
+    2 (tileset/create sketch)
+    3 (lindenmayer.ui/create sketch)))
+
+
+(defonce s (create-sketch 1))
