@@ -1,6 +1,7 @@
 (ns example.tileset
   (:require [quil.core :as q]
             [quil.middleware :as m]
+            [example.key-press-handlers :refer [on-key-press]]
             [example.palette :refer [palettes find-palette]]))
 
 ;; A2
@@ -65,4 +66,5 @@
              (generate-square depth))
     :update #'s-update
     :draw #'s-draw
-    :middleware [m/fun-mode]))
+    :middleware [m/fun-mode]
+    :key-pressed (on-key-press canvas)))

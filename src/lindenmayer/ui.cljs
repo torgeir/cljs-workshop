@@ -5,6 +5,7 @@
             [polygram.dom :as dom]
             [polygram.timers :as timers]
             [lindenmayer.data :as lindenmayer.data]
+            [example.key-press-handlers :refer [on-key-press]]
             [example.palette :refer [find-palette palettes]]))
 
 
@@ -68,5 +69,9 @@
                              (lindenmayer.data/cool-trees 1)
                              5))})
         :update #'s-update
-        :draw #'s-draw))
+        :draw #'s-draw
+        :key-pressed (on-key-press canvas)))
     1000))
+
+
+

@@ -1,7 +1,8 @@
 (ns example.perlin_flow
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [example.palette :refer [find-palette]]))
+            [example.palette :refer [find-palette]]
+            [example.key-press-handlers :refer [on-key-press]]))
 
 ;; A2
 (def w 2481)
@@ -67,4 +68,5 @@
              (particles 1000))
     :update (fn [s] (map update-particle s))
     :draw draw
-    :middleware [m/fun-mode]))
+    :middleware [m/fun-mode]
+    :key-pressed (on-key-press canvas)))
