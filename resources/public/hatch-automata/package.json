@@ -1,0 +1,23 @@
+{
+  "name": "hatch-automata",
+  "version": "1.0.0",
+  "description": "Sketches showcasing isometric-automata generator.",
+  "main": "dist/index.js",
+  "hexagonal": "dist/index-hex.js",
+  "rotational": "dist/index-rotate.js",
+  "scripts": {
+    "build": "rollup -c",
+    "watch": "rollup -c -w"
+  },
+  "author": "Kjetil Golid",
+  "license": "MIT",
+  "dependencies": {
+    "chromotome": "^1.6.2",
+    "dat.gui": "^0.7.6",
+    "isometric-automata": "^1.2.0"
+  },
+  "devDependencies": {
+    "rollup": "^0.67.4",
+    "rollup-plugin-node-resolve": "^3.4.0"
+  }
+}
