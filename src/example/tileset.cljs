@@ -5,8 +5,8 @@
             [example.palette :refer [palettes find-palette]]))
 
 ;; A2
-(def w 2481)
-(def h 3484.5)
+(def w 2480)
+(def h 3508)
 
 (def padding-horizontal 100)
 (def spacing 4)
