@@ -17,32 +17,32 @@
 (def palette (find-palette "rag-taj"))
 
 
-(defn s-draw [{:keys [w h op n first]}]
+(defn sketch-draw [{:keys [w h op n]}]
   (q/pop-matrix)
-  (when first
-    (q/translate (/ w 2) (/ h 1.2))
-    (q/rotate Math/PI))
-  (when op
-    (condp = op
-      "F" (do
-            (q/stroke-weight (q/random (* 30 n)))
-            (apply q/stroke
-                   (rand-nth (:colors palette)))
-            (let [l (q/random 1 (* 100 n))]
-              (q/line 0 0 0 l)
-              (q/translate 0 l)))
-      "-" (q/rotate (rand -0.95))
-      "+" (q/rotate (rand 0.90))
-      "[" (q/push-matrix)
-      "]" (q/pop-matrix)
-      nil)
-    (q/push-matrix)))
+  (if-not op
+    (do
+      (q/translate (/ w 2) (/ h 1.2))
+      (q/rotate Math/PI))
+    (do
+      (condp = op
+        "F" (do
+              (q/stroke-weight (q/random (* 30 n)))
+              (apply q/stroke
+                     (rand-nth (:colors palette)))
+              (let [l (q/random 1 (* 100 n))]
+                (q/line 0 0 0 l)
+                (q/translate 0 l)))
+        "-" (q/rotate (rand -0.90))
+        "+" (q/rotate (rand 0.90))
+        "[" (q/push-matrix)
+        "]" (q/pop-matrix)
+        nil)
+      (q/push-matrix))))
 
 
-(defn s-update [{:keys [chan n] :as s}]
+(defn sketch-update [{:keys [chan n] :as state}]
   (let [op (async/poll! chan)]
-    (-> s
-      (assoc :first false)
+    (-> state
       (assoc :op op)
       (assoc :n (condp = op
                   "[" (* n 0.8)
@@ -57,21 +57,19 @@
         :size [w h]
         :middleware [m/fun-mode]
         :setup (fn []
-                 (q/frame-rate 4000)
+                 (q/frame-rate 100)
                  (apply q/background (:background palette))
-                 {:first true
-                  :n     1
-                  :w     w
-                  :h     h
-                  :chan  (async/to-chan
-                           (lindenmayer.data/generate
-                             "F"
-                             (lindenmayer.data/cool-trees 1)
-                             5))})
-        :update #'s-update
-        :draw #'s-draw
+                 {:n    1
+                  :w    w
+                  :h    h
+                  :chan (async/to-chan
+                          (lindenmayer.data/generate
+                            "F"
+                            (lindenmayer.data/cool-trees 1)
+                            5))})
+        :update sketch-update
+        :draw sketch-draw
         :key-pressed (on-key-press canvas)))
     1000))
-
 
 

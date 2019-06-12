@@ -42,21 +42,23 @@
                (- Math/PI)
                Math/PI))
 
+(defn sketch-update [state]
+  (map (fn [p]
+         (assoc p
+                :x  (update-pos (:x p) (:vx p) w)
+                :y  (update-pos (:y p) (:vy p) h)
+                :vx (update-vel (:vx p) (Math/cos (:adir p)))
+                :vy (update-vel (:vx p) (Math/sin (:adir p)))
+                :adir (update-acc (:adir p) (:x p) (:y p))))
+       state))
 
-(defn draw [s]
-  (doseq [pnt s]
+(defn sketch-draw [state]
+  (doseq [pnt state]
     (apply q/fill (:color pnt))
     (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
 
 
-(defn update-particle [p]
-  (assoc p
-         :x  (update-pos (:x p) (:vx p) w)
-         :y  (update-pos (:y p) (:vy p) h)
-         :vx (update-vel (:vx p) (Math/cos (:adir p)))
-         :vy (update-vel (:vx p) (Math/sin (:adir p)))
-         :adir (update-acc (:adir p) (:x p) (:y p))))
-
+(defn update-particle [p])
 
 (defn create [canvas]
   (q/defsketch perlin-flow
@@ -66,7 +68,7 @@
              (q/no-stroke)
              (q/background (:background palette))
              (particles 1000))
-    :update (fn [s] (map update-particle s))
-    :draw draw
+    :update sketch-update
+    :draw sketch-draw
     :middleware [m/fun-mode]
     :key-pressed (on-key-press canvas)))

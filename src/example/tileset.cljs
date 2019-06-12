@@ -44,11 +44,11 @@
   (q/translate (- size) (- size)))
 
 
-(defn s-update [state]
+(defn sketch-update [state]
   (generate-square depth))
 
 
-(defn s-draw [state]
+(defn sketch-draw [state]
   (apply q/background (:background palette))
   (q/translate padding-horizontal (/ (- h
                                         (- w (* 2 padding-horizontal)))
@@ -66,7 +66,7 @@
              (q/rect-mode :corners)
              (q/frame-rate 1)
              (generate-square depth))
-    :update #'s-update
-    :draw #'s-draw
+    :update sketch-update
+    :draw sketch-draw
     :middleware [m/fun-mode]
     :key-pressed (on-key-press canvas)))
