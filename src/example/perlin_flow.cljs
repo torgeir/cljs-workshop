@@ -5,8 +5,8 @@
             [example.key-press-handlers :refer [on-key-press]]))
 
 ;; A2
-(def w 2481)
-(def h 3484.5)
+(def w 2480)
+(def h 3508)
 
 
 (def palette (find-palette "ducci_h"))
