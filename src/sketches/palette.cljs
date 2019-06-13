@@ -12,7 +12,16 @@
          (-> palette
            (update :colors #(map hex-to-rgb %))
            (update :background hex-to-rgb)))
-       [{:name "cc239" :colors ["#e3dd34" "#78496b" "#f0527f" "#a7e0e2"] :background "#e0eff0"}
+       [{:name "frozen-rose" :colors ["#29368f" "#e9697b" "#1b164d" "#f7d996"] :background "#f2e8e4"}
+        {:name "winter-night" :colors ["#122438" "#dd672e" "#87c7ca" "#ebebeb"] :background "#ebebeb"}
+        {:name "saami" :colors ["#eab700" "#e64818" "#2c6393" "#eecfca"] :background "#e7e6e4"}
+        {:name "knotberry1" :colors ["#20342a" "#f74713" "#686d2c" "#e9b4a6"] :background "#e5ded8"}
+        {:name "knotberry2" :colors ["#1d3b1a" "#eb4b11" "#e5bc00" "#f29881"] :background "#eae2d0"}
+        {:name "tricolor" :colors ["#ec643b" "#56b7ab" "#f8cb57" "#1f1e43"] :background "#f7f2df"}
+        {:name "foxshelter" :colors ["#ff3931" "#007861" "#311f27" "#bab9a4"] :background "#dddddd"}
+        {:name "hermes" :colors ["#253852" "#51222f" "#b53435" "#ecbb51"] :background "#eeccc2"}
+
+        {:name "cc239" :colors ["#e3dd34" "#78496b" "#f0527f" "#a7e0e2"] :background "#e0eff0"}
         {:name "cc234" :colors ["#ffce49" "#ede8dc" "#ff5736" "#ff99b4"] :background "#f7f4ed"}
         {:name "cc232" :colors ["#5c5f46" "#ff7044" "#ffce39" "#66aeaa"] :background "#e9ecde"}
         {:name "cc238" :colors ["#553c60" "#ffb0a0" "#ff6749" "#fbe090"] :background "#f5e9de"}
