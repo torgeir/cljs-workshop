@@ -15,11 +15,11 @@
 
 
 (defn particle []
-  {:x     (* w (Math/random))
-   :y     (* h (Math/random))
+  {:x     (* w (rand))
+   :y     (* h (rand))
    :vx    0
    :vy    0
-   :color (rand-nth (:colors palette))
+   :color-index (rand-int (count (:colors palette)))
    :adir  0})
 
 
@@ -42,6 +42,7 @@
                (- Math/PI)
                Math/PI))
 
+
 (defn sketch-update [state]
   (map (fn [p]
          (assoc p
@@ -54,11 +55,9 @@
 
 (defn sketch-draw [state]
   (doseq [pnt state]
-    (apply q/fill (:color pnt))
+    (apply q/fill (nth (:colors palette) (:color-index pnt)))
     (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
 
-
-(defn update-particle [p])
 
 (defn create [canvas]
   (q/defsketch perlin-flow
