@@ -22,7 +22,7 @@ Use the provided `.\clj.exe` as a replacement for the `clj` command.
 
 Install `Calva: Clojure & Clojurescript Interactive Programming`
 
-Hit `cmd + p` and start type `>jack` and hit enter.
+Hit `cmd + shift + p` and start type `jack` and hit enter.
 
 Select `Clojure CLI + Figwheel Main`, select `:repl`, wait, select `dev`.
 
