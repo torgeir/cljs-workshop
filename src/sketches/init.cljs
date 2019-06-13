@@ -19,4 +19,4 @@
     3 (lindenmayer/create sketch)))
 
 
-(defonce s (create-sketch 3))
+(def s (create-sketch 1))
