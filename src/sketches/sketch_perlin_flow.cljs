@@ -65,7 +65,7 @@
     :size [w h]
     :setup (fn []
              (q/no-stroke)
-             (q/background (:background palette))
+             (apply q/background (:background palette))
              (particles 1000))
     :update sketch-update
     :draw sketch-draw
