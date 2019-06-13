@@ -18,11 +18,6 @@ Use the provided `.\clj.exe` as a replacement for the `clj` command.
 
 ## REPL on steroids
 
-### Manually
-```
-clj -Arepl
-```
-
 ### VSCode
 
 Install `Calva: Clojure & Clojurescript Interactive Programming`
@@ -38,6 +33,11 @@ Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 Install `cider`.
 
 Run `cider-jack-in-cljs`.
+
+### Manually
+```
+clj -Arepl
+```
 
 ## Resource
 
