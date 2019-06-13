@@ -67,8 +67,8 @@
                             "F"
                             (lindenmayer.data/cool-trees 1)
                             5))})
-        :update sketch-update
-        :draw sketch-draw
+        :update #'sketch-update
+        :draw #'sketch-draw
         :key-pressed (on-key-press canvas)))
     1000))
 
