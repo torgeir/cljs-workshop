@@ -1,5 +1,5 @@
-(ns example.key-press-handlers
-  (:require [example.files :as files]))
+(ns lib.key-press-handlers
+  (:require [lib.files :as files]))
 
 (defn on-key-press [canvas]
   (fn [state e]

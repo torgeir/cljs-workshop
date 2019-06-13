@@ -1,5 +1,5 @@
-(ns polygram.core
-  (:require [polygram.random :refer [rand-no-repeat]]))
+(ns lib.polygram.core
+  (:require [lib.polygram.random :refer [rand-no-repeat]]))
 
 ;;   Given alphabet A.
 ;;

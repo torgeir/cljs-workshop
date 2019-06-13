@@ -1,8 +1,8 @@
-(ns example.perlin_flow
+(ns sketches.sketch-perlin-flow
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [example.palette :refer [find-palette]]
-            [example.key-press-handlers :refer [on-key-press]]))
+            [lib.key-press-handlers :refer [on-key-press]]
+            [sketches.palette :refer [find-palette]]))
 
 ;; A2
 (def w 2480)

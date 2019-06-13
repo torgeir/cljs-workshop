@@ -1,4 +1,4 @@
-(ns polygram.dom)
+(ns lib.polygram.dom)
 
 (def body (.-body js/document))
 

@@ -1,4 +1,4 @@
-(ns polygram.random)
+(ns lib.polygram.random)
 
 
 (defn rand-no-repeat

@@ -1,4 +1,4 @@
-(ns lindenmayer.spec
+(ns lib.lindenmayer.spec
   (:require [clojure.spec.alpha :as s]
             [clojure.test.check.generators :as gen]))
 

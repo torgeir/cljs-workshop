@@ -1,4 +1,4 @@
-(ns example.tutorial
+(ns help.tutorial
   (:require [goog.dom :as dom]))
 
 

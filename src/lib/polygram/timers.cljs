@@ -1,4 +1,4 @@
-(ns polygram.timers)
+(ns lib.polygram.timers)
 
 
 (defn immediate

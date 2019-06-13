@@ -1,4 +1,4 @@
-(ns example.files)
+(ns lib.files)
 
 
 (defn download-jpeg

@@ -1,8 +1,8 @@
-(ns example.tileset
+(ns sketches.sketch-tileset
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [example.key-press-handlers :refer [on-key-press]]
-            [example.palette :refer [palettes find-palette]]))
+            [lib.key-press-handlers :refer [on-key-press]]
+            [sketches.palette :refer [palettes find-palette]]))
 
 ;; A2
 (def w 2480)

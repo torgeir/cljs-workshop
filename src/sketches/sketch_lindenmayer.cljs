@@ -1,12 +1,12 @@
-(ns lindenmayer.ui
+(ns sketches.sketch-lindenmayer
   (:require [quil.core :as q]
             [quil.middleware :as m]
             [cljs.core.async :as async :include-macros true]
-            [polygram.dom :as dom]
-            [polygram.timers :as timers]
-            [lindenmayer.data :as lindenmayer.data]
-            [example.key-press-handlers :refer [on-key-press]]
-            [example.palette :refer [find-palette palettes]]))
+            [lib.polygram.dom :as dom]
+            [lib.polygram.timers :as timers]
+            [lib.lindenmayer.data :as lindenmayer.data]
+            [lib.key-press-handlers :refer [on-key-press]]
+            [sketches.palette :refer [find-palette palettes]]))
 
 
 ;; A2

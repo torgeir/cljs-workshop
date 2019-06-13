@@ -1,4 +1,4 @@
-(ns polygram.log)
+(ns lib.polygram.log)
 
 
 (defn log [& args]

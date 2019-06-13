@@ -1,6 +1,6 @@
-(ns lindenmayer.data
+(ns lib.lindenmayer.data
   (:require [clojure.string :as s]
-            [polygram.core :refer [grow]]))
+            [lib.polygram.core :refer [grow]]))
 
 
 (def cool-trees
