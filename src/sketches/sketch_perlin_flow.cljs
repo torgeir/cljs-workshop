@@ -12,7 +12,7 @@
 (def palette (find-palette "ducci_h"))
 (def noise-dim 350)
 (def diameter 10)
-
+(def angle 3)
 
 (defn particle []
   {:x     (* w (rand))
@@ -39,8 +39,8 @@
   (q/map-range (q/noise (/ x noise-dim) (/ y noise-dim))
                0
                1
-               (- Math/PI)
-               Math/PI))
+               (* angle (- Math/PI))
+               (* angle Math/PI)))
 
 
 (defn sketch-update [state]
