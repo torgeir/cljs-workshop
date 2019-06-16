@@ -4,7 +4,7 @@
            org.clojure/core.async    {:mvn/version "0.4.490"}
            org.clojure/test.check    {:mvn/version "0.10.0-alpha4"}
            com.bhauman/figwheel-main {:mvn/version "0.2.0"}
-           quil                      {:mvn/version "2.6.0"
+           quil                      {:mvn/version "3.0.0"
                                       :exclusions  [com.lowagie/itext]}}
  :aliases {:repl {:main-opts  ["-i" "init-repl-for-calva.clj"]
                   :extra-deps {;; improve interactive repl
