@@ -49,6 +49,11 @@
                   "]" (/ n 0.8)
                   n)))))
 
+(defn save-image [state]
+  (when (= "s" (q/raw-key))
+    (q/save (js/prompt "Enter name of the sketch to save:")))
+  state)
+
 (defn create [canvas]
   (js/setTimeout
     (fn []
@@ -69,7 +74,7 @@
                             5))})
         :update #'sketch-update
         :draw #'sketch-draw
-        :key-pressed (on-key-press canvas)))
     1000))
+      :key-pressed save-image))
 
 

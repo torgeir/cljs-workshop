@@ -58,6 +58,11 @@
     (apply q/fill (nth (:colors palette) (:color-index pnt)))
     (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
 
+(defn save-image [state]
+  (when (= "s" (q/raw-key))
+    (q/save (js/prompt "Enter name of the sketch to save:")))
+  state)
+
 
 (defn create [canvas]
   (q/defsketch perlin-flow
@@ -70,4 +75,4 @@
     :update sketch-update
     :draw sketch-draw
     :middleware [m/fun-mode]
-    :key-pressed (on-key-press canvas)))
+    :key-pressed save-image))

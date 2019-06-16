@@ -55,6 +55,10 @@
                                      2))
   (draw-square state (- (/ w 2) padding-horizontal)))
 
+(defn save-image []
+  (when (= "s" (q/raw-key))
+    (q/save (js/prompt "Enter name of the sketch to save:"))))
+
 
 (defn create [canvas]
   (q/defsketch tileset
@@ -69,4 +73,4 @@
     :update sketch-update
     :draw sketch-draw
     :middleware [m/fun-mode]
-    :key-pressed (on-key-press canvas)))
+    :key-pressed save-image))
