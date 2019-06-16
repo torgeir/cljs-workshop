@@ -49,6 +49,13 @@
   (q/push-matrix))
 
 
+(defn sketch-draw-all [{:keys [chan]}]
+  (sketch-draw {:op nil :n 1})
+  (doseq [op chan]
+    (sketch-draw {:op op :n 1})
+    1 chan))
+
+
 (defn sketch-update [{:keys [chan n] :as state}]
   (let [op (async/poll! chan)]
     (-> state
