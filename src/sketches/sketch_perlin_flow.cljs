@@ -34,7 +34,7 @@
 
 
 (defn update-vel [curr delta]
-  (q/norm (+ curr delta) 0 2))
+  (/ (+ curr delta) 2))
 
 
 (defn update-acc [x y id]
