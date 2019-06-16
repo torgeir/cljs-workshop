@@ -14,8 +14,10 @@
 (def diameter 10)
 (def angle 3)
 
-(defn particle []
-  {:x     (* w (rand))
+(def particle_uniqueness 0.05) ;; Low number gives similar movement among particles
+(defn particle [index]
+  {:id    index
+   :x     (* w (rand))
    :y     (* h (rand))
    :vx    0
    :vy    0
@@ -24,7 +26,7 @@
 
 
 (defn particles [n]
-  (map (fn [] (particle)) (range n)))
+  (map (fn [i] (particle i)) (range n)))
 
 
 (defn update-pos [curr delta max]
@@ -35,12 +37,12 @@
   (q/norm (+ curr delta) 0 2))
 
 
-(defn update-acc [curr x y]
-  (q/map-range (q/noise (/ x noise-dim) (/ y noise-dim))
-               0
-               1
-               (* angle (- Math/PI))
-               (* angle Math/PI)))
+(defn update-acc [x y id]
+  (*
+   (+
+    (q/noise (* x noise-dim) (* y noise-dim))
+    (* (q/noise (* x noise-dim) (* y noise-dim) id) particle_uniqueness))
+   (* angle Math/PI)))
 
 
 (defn sketch-update [state]
@@ -50,7 +52,7 @@
                 :y  (update-pos (:y p) (:vy p) h)
                 :vx (update-vel (:vx p) (Math/cos (:adir p)))
                 :vy (update-vel (:vx p) (Math/sin (:adir p)))
-                :adir (update-acc (:adir p) (:x p) (:y p))))
+                :adir (update-acc (:x p) (:y p) (:id p))))
        state))
 
 (defn sketch-draw [state]
