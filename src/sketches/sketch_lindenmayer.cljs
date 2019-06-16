@@ -73,7 +73,6 @@
                             5))})
         :update #'sketch-update
         :draw #'sketch-draw
-    1000))
-      :key-pressed save-image))
+      :key-pressed save-image)) 1000))
 
 
