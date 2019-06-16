@@ -9,21 +9,21 @@
 (def h 3508)
 
 (def opacity 150) ;; [0-255]
+(def particle_size 6) ;; Diameter of each particle
 
 (def palette (find-palette "ducci_h"))
 (def noise-dim 350)
-(def diameter 10)
 (def angle 3)
 
 (def particle_uniqueness 0.05) ;; Low number gives similar movement among particles
 (defn particle [index]
-  {:id    index
+  {:id    index ;; idea: set id equal to color-index?
    :x     (* w (rand))
    :y     (* h (rand))
    :vx    0
    :vy    0
-   :color-index (rand-int (count (:colors palette)))
-   :adir  0})
+   :adir  0
+   :color-index (rand-int (count (:colors palette)))})
 
 
 (defn particles [n]
@@ -31,7 +31,7 @@
 
 
 (defn update-pos [curr delta max]
-  (mod (+ curr delta) max))
+  (mod (+ curr delta) (+ max 40)))
 
 
 (defn update-vel [curr delta]
@@ -58,8 +58,12 @@
 
 (defn sketch-draw [state]
   (doseq [pnt state]
-    (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
     (apply q/fill (conj (nth (:colors palette) (:color-index pnt)) opacity))
+    (q/ellipse
+     (- (:x pnt) 20)
+     (- (:y pnt) 20)
+     particle_size
+     particle_size)))
 
 (defn save-image [state]
   (when (= "s" (q/raw-key))
