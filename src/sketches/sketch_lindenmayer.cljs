@@ -11,32 +11,42 @@
 ;; A2
 (def w 1240)
 (def h 1754)
+(def start_height 200)
 
+(def palette (find-palette "hermes"))
+(def min-weight 2)
+(def max-weight 6)
 
-(def palette (find-palette "rag-taj"))
+(def mean_angle 0.35) ;; Change to something between 0 and Math/TWO_PI
+(def angle_variance 0.15)
+(def mean_length 15)
+(def length_variance 6)
 
+(def angle_low (- mean_angle angle_variance))
+(def angle_high (+ mean_angle angle_variance))
+(def length_low (- mean_length length_variance))
+(def length_high (+ mean_length length_variance))
 
 (defn sketch-draw [{:keys [w h op n]}]
   (q/pop-matrix)
   (if-not op
     (do
-      (q/translate (/ w 2) (/ h 1.2))
+      (q/translate (/ (q/width) 2) (- (q/height) start_height))
       (q/rotate Math/PI))
     (do
       (condp = op
         "F" (do
-              (q/stroke-weight (q/random (* 30 n)))
-              (apply q/stroke
-                     (rand-nth (:colors palette)))
-              (let [l (q/random 1 (* 100 n))]
-                (q/line 0 0 0 l)
-                (q/translate 0 l)))
-        "-" (q/rotate (rand -0.90))
-        "+" (q/rotate (rand 0.90))
+              (q/stroke-weight (q/random min-weight (* n max-weight)))
+              (apply q/stroke (rand-nth (:colors palette)))
+              (let [length (q/random length_low length_high)]
+                (q/line 0 0 0 length)
+                (q/translate 0 length)))
+        "-" (q/rotate (- (q/random angle_low angle_high)))
+        "+" (q/rotate  (q/random angle_low angle_high))
         "[" (q/push-matrix)
         "]" (q/pop-matrix)
-        nil)
-      (q/push-matrix))))
+        nil)))
+  (q/push-matrix))
 
 
 (defn sketch-update [{:keys [chan n] :as state}]
