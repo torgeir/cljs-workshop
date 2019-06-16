@@ -8,6 +8,7 @@
 (def w 2480)
 (def h 3508)
 
+(def opacity 150) ;; [0-255]
 
 (def palette (find-palette "ducci_h"))
 (def noise-dim 350)
@@ -57,8 +58,8 @@
 
 (defn sketch-draw [state]
   (doseq [pnt state]
-    (apply q/fill (nth (:colors palette) (:color-index pnt)))
     (q/ellipse (:x pnt) (:y pnt) diameter diameter)))
+    (apply q/fill (conj (nth (:colors palette) (:color-index pnt)) opacity))
 
 (defn save-image [state]
   (when (= "s" (q/raw-key))
