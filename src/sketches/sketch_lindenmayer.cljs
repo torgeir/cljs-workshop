@@ -9,8 +9,8 @@
 
 
 ;; A2
-(def w 2480)
-(def h 3508)
+(def w 1240)
+(def h 1754)
 
 
 (def palette (find-palette "rag-taj"))
@@ -73,6 +73,7 @@
                             5))})
         :update #'sketch-update
         :draw #'sketch-draw
+      :settings (fn [] (q/pixel-density 2))
       :key-pressed save-image)) 1000))
 
 
