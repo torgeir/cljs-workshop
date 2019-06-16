@@ -10,6 +10,7 @@
 
 (def opacity 150) ;; [0-255]
 (def particle_size 6) ;; Diameter of each particle
+(def speed 4) ;; distance moved each frame
 
 (def palette (find-palette "ducci_h"))
 (def noise-dim 350)
@@ -49,8 +50,8 @@
 (defn sketch-update [state]
   (map (fn [p]
          (assoc p
-                :x  (update-pos (:x p) (:vx p) w)
-                :y  (update-pos (:y p) (:vy p) h)
+                :x  (update-pos (:x p) (* speed (:vx p)) w)
+                :y  (update-pos (:y p) (* speed (:vy p)) h)
                 :vx (update-vel (:vx p) (Math/cos (:adir p)))
                 :vy (update-vel (:vx p) (Math/sin (:adir p)))
                 :adir (update-acc (:x p) (:y p) (:id p))))
