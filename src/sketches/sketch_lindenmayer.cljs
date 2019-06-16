@@ -5,7 +5,6 @@
             [lib.polygram.dom :as dom]
             [lib.polygram.timers :as timers]
             [lib.lindenmayer.data :as lindenmayer.data]
-            [lib.key-press-handlers :refer [on-key-press]]
             [sketches.palette :refer [find-palette palettes]]))
 
 
@@ -51,7 +50,7 @@
 
 (defn save-image [state]
   (when (= "s" (q/raw-key))
-    (q/save (js/prompt "Enter name of the sketch to save:")))
+    (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
   state)
 
 (defn create [canvas]
