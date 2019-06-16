@@ -12,11 +12,11 @@
 ;; CHANGE THESE
 (def palette (find-palette "ducci_q")) ;; Check out palette.cljs 
 (def opacity 150) ;; [0-255]
-(def noise-dim 0.001) ;; Low number gives smooth curves
-(def particle_uniqueness 0.05) ;; Low number gives similar movement among particles
-(def particle_size 6) ;; Diameter of each particle
+(def noise-dim 0.002) ;; Low number gives smooth curves
+(def particle_uniqueness 0.2) ;; Low number gives similar movement among particles
+(def particle_size 3) ;; Diameter of each particle
 (def angle 2) ;; magnitude of angle -- funny to change while drawing
-(def speed 4) ;; distance moved each frame
+(def speed 2) ;; distance moved each frame
 
 
 (defn particle [index]
