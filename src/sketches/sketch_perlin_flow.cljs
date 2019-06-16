@@ -60,7 +60,7 @@
 
 (defn save-image [state]
   (when (= "s" (q/raw-key))
-    (q/save (js/prompt "Enter name of the sketch to save:")))
+    (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
   state)
 
 
