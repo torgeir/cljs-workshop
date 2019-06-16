@@ -7,6 +7,7 @@
 ;; A2
 (def w 1240)
 (def h 1754)
+(def padding -20)
 
 ;; CHANGE THESE
 (def palette (find-palette "ducci_q")) ;; Check out palette.cljs 
@@ -33,7 +34,7 @@
 
 
 (defn update-pos [curr delta max]
-  (mod (+ curr delta) (+ max 40)))
+  (mod (+ curr delta) (- max padding)))
 
 
 (defn update-vel [curr delta]
@@ -62,8 +63,8 @@
   (doseq [pnt state]
     (apply q/fill (conj (nth (:colors palette) (:color-index pnt)) opacity))
     (q/ellipse
-     (- (:x pnt) 20)
-     (- (:y pnt) 20)
+     (+ (:x pnt) padding)
+     (+ (:y pnt) padding)
      particle_size
      particle_size)))
 
