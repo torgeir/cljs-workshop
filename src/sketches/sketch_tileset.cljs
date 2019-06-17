@@ -8,11 +8,11 @@
 (def w 1240)
 (def h 1754)
 
-(def padding-horizontal 100)
-(def spacing 4)
-(def depth 8)
+(def padding-horizontal 110)
+(def spacing 0)
+(def depth 5)
 
-(def palette (find-palette "cc242"))
+(def palette (find-palette "ducci_x"))
 
 
 (defn draw-square [x1 y1 x2 y2 c1]
@@ -32,15 +32,15 @@
 
 (defn generate-square [depth]
   (if (= depth 0)
-    (if (< (rand) .7) \w \b)
-    (let [ul     (generate-square (- depth 1))
-          ur     (generate-square (- depth 1))
-          dl     (generate-square (- depth 1))
-          dr     (generate-square (- depth 1))
+    (if (< (rand) .5) \w \b)
+    (let [ul     (generate-square (dec depth))
+          ur     (generate-square (dec depth))
+          dl     (generate-square (dec depth))
+          dr     (generate-square (dec depth))
           choose (rand (+ depth 2))]
       (cond
-        (< choose 0.1) \w
-        (< choose 3)   \b
+        (< choose 1)   \w ;; <-- comment out these two lines to make squares equal in size
+        (< choose 2)   \b ;; <--
         :else          [ul \- ur \/ dl \- dr]))))
 
 
