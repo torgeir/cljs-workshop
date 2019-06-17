@@ -3,7 +3,6 @@
 
 
 (defn save-image [state e]
-  (prn e)
   (when (= :s (:key e))
     (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
   state)
