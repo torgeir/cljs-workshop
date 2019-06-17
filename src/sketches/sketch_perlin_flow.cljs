@@ -1,7 +1,7 @@
 (ns sketches.sketch-perlin-flow
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [lib.key-press-handlers :refer [on-key-press]]
+            [lib.key-press-handlers :refer [save-image]]
             [sketches.palette :refer [find-palette]]))
 
 ;; A2
@@ -10,11 +10,11 @@
 (def padding -20)
 
 ;; CHANGE THESE
-(def palette (find-palette "ducci_q")) ;; Check out palette.cljs 
+(def palette (find-palette "ducci_q")) ;; Check out palette.cljs
 (def opacity 150) ;; [0-255]
 (def noise-dim 0.002) ;; Low number gives smooth curves
-(def particle_uniqueness 0.2) ;; Low number gives similar movement among particles
-(def particle_size 3) ;; Diameter of each particle
+(def particle-uniqueness 0.2) ;; Low number gives similar movement among particles
+(def particle-size 3) ;; Diameter of each particle
 (def angle 2) ;; magnitude of angle -- funny to change while drawing
 (def speed 2) ;; distance moved each frame
 
@@ -43,10 +43,10 @@
 
 (defn update-acc [x y id]
   (*
-   (+
-    (q/noise (* x noise-dim) (* y noise-dim))
-    (* (q/noise (* x noise-dim) (* y noise-dim) id) particle_uniqueness))
-   (* angle Math/PI)))
+    (+
+      (q/noise (* x noise-dim) (* y noise-dim))
+      (* (q/noise (* x noise-dim) (* y noise-dim) id) particle-uniqueness))
+    (* angle Math/PI)))
 
 
 (defn sketch-update [state]
@@ -59,19 +59,15 @@
                 :adir (update-acc (:x p) (:y p) (:id p))))
        state))
 
+
 (defn sketch-draw [state]
   (doseq [pnt state]
     (apply q/fill (conj (nth (:colors palette) (:color-index pnt)) opacity))
     (q/ellipse
-     (+ (:x pnt) padding)
-     (+ (:y pnt) padding)
-     particle_size
-     particle_size)))
-
-(defn save-image [state]
-  (when (= "s" (q/raw-key))
-    (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
-  state)
+      (+ (:x pnt) padding)
+      (+ (:y pnt) padding)
+      particle-size
+      particle-size)))
 
 
 (defn create [canvas]
