@@ -1,18 +1,16 @@
 (ns sketches.sketch-tileset
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [lib.key-press-handlers :refer [on-key-press]]
+            [lib.key-press-handlers :refer [save-image]]
             [sketches.palette :refer [palettes find-palette]]))
 
 ;; A2
 (def w 2480)
 (def h 3508)
 
-
 (def padding-horizontal 100)
 (def spacing 4)
 (def depth 8)
-
 
 (def palette (find-palette "cc242"))
 
@@ -54,10 +52,6 @@
                                         (- w (* 2 padding-horizontal)))
                                      2))
   (draw-square state (- (/ w 2) padding-horizontal)))
-
-(defn save-image []
-  (when (= "s" (q/raw-key))
-    (q/save (js/prompt "Enter name of the sketch to save:"))))
 
 
 (defn create [canvas]

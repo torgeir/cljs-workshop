@@ -1,9 +1,9 @@
 (ns lib.key-press-handlers
-  (:require [lib.files :as files]))
+  (:require [quil.core :as q]))
 
-(defn on-key-press [canvas]
-  (fn [state e]
-    (when (= :p (:key e))
-      (files/download-jpeg canvas (js/prompt "Enter name of the sketch to save:")))
-    state))
 
+(defn save-image [state e]
+  (prn e)
+  (when (= :s (:key e))
+    (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
+  state)
