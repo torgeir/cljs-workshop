@@ -5,8 +5,8 @@
             [sketches.palette :refer [palettes find-palette]]))
 
 ;; A2
-(def w 2480)
-(def h 3508)
+(def w 1240)
+(def h 1754)
 
 (def padding-horizontal 100)
 (def spacing 4)
@@ -58,6 +58,7 @@
   (q/defsketch tileset
     :host canvas
     :size [w h]
+    :settings (fn [] (q/pixel-density 2))
     :setup (fn []
              (q/no-stroke)
              (q/fill 0)
