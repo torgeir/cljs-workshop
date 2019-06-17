@@ -61,11 +61,16 @@
 
 (defn sketch-draw [state]
   (apply q/background (:background palette))
-  (q/translate padding-horizontal (/ (- h
-                                        (- w (* 2 padding-horizontal)))
-                                     2))
+  (q/translate padding-horizontal padding-horizontal)
   (draw-segment state (- (/ w 2) padding-horizontal)))
 
+(defn sketch-update [state]
+  [(generate-square depth) \-
+   (generate-square depth) \/
+   (generate-square depth) \-
+   (generate-square depth) \/
+   (generate-square depth) \-
+   (generate-square depth)])
 
 (defn create [canvas]
   (q/defsketch tileset
@@ -77,7 +82,7 @@
              (q/fill 0)
              (q/rect-mode :corners)
              (q/frame-rate 1)
-             (generate-square depth))
+             (sketch-update []))
     :update sketch-update
     :draw sketch-draw
     :middleware [m/fun-mode]
