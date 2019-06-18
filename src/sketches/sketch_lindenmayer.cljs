@@ -70,9 +70,9 @@
   "A variant of sketch-draw that consumes all operations from the channel and
   draws their state to the canvas."
   [{:keys [chan]}]
-  (sketch-draw {:op nil :n 1})
+  (sketch-draw {:op nil :n 1 :first-draw true})
   (doseq [op chan]
-    (sketch-draw {:op op :n 1})
+    (sketch-draw {:op op :n 1 :first-draw false})
     1 chan))
 
 
