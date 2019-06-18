@@ -29,9 +29,9 @@
 (def length-high (+ mean-length length-variance))
 
 
-(defn sketch-draw [{:keys [op n]}]
+(defn sketch-draw [{:keys [first-draw op n]}]
   (q/pop-matrix)
-  (if-not op
+  (if first-draw
     (do
       (q/translate (/ (q/width) 2) (- (q/height) start-height))
       (q/rotate Math/PI))
@@ -61,6 +61,7 @@
 (defn sketch-update [{:keys [chan n] :as state}]
   (let [op (async/poll! chan)]
     (-> state
+      (assoc :first-draw false)
       (assoc :op op)
       (assoc :n (condp = op
                   "[" (* n 0.8)
@@ -71,7 +72,7 @@
 (defn create [canvas]
   (js/setTimeout
     (fn []
-      (q/sketch
+      (q/defsketch lindenmayer
         :host canvas
         :size [w h]
         :middleware [m/fun-mode]
@@ -79,14 +80,15 @@
         :setup (fn []
                  (q/frame-rate 100)
                  (apply q/background (:background palette))
-                 {:n    1
-                  :chan (async/to-chan
-                          (lindenmayer.data/generate
-                            "F"
-                            (lindenmayer.data/cool-trees 1)
-                            5))})
-        :update #'sketch-update
-        :draw #'sketch-draw
+                 {:first-draw true
+                  :n          1
+                  :chan       (async/to-chan
+                                (lindenmayer.data/generate
+                                  "F"
+                                  (lindenmayer.data/cool-trees 1)
+                                  5))})
+        :update sketch-update
+        :draw sketch-draw
         :key-pressed save-image))
     1000))
 
