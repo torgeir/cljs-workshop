@@ -64,7 +64,13 @@ let sketch = function(p) {
   p.keyPressed = function() {
     if (p.keyCode === 80)
       p.saveCanvas(
-        "sketch_" + options.h_seed_str + "_" + options.v_seed_str + "_" + options.d_seed_str,
+        prompt("Enter name of the sketch to save: ") +
+          "_" +
+          options.h_seed_str +
+          "_" +
+          options.v_seed_str +
+          "_" +
+          options.d_seed_str,
         "jpeg"
       );
   };

@@ -85,8 +85,14 @@ window.onload = function() {
     }
 
     function save_image() {
-      var image = canvas.toDataURL("image/jpeg", 1.0).replace("image/jpeg", "image/octet-stream");
-      window.location.href = image;
+      var a = document.createElement("a");
+      a.download = prompt("Enter name of the sketch to save: ");
+      a.href = canvas.toDataURL("image/jpeg", 1.0);
+      document.body.appendChild(a);
+      a.click();
+      setTimeout(function() {
+        document.body.removeChild(a);
+      }, 0);
     }
   }
 
