@@ -10,8 +10,8 @@
   "Color palettes from https://kgolid.github.io/chromotome-site/"
   (map (fn [palette]
          (-> palette
-           (update :colors #(map hex-to-rgb %))
-           (update :background hex-to-rgb)))
+             (update :colors #(map hex-to-rgb %))
+             (update :background hex-to-rgb)))
        [{:name "frozen-rose" :colors ["#29368f" "#e9697b" "#1b164d" "#f7d996"] :background "#f2e8e4"}
         {:name "winter-night" :colors ["#122438" "#dd672e" "#87c7ca" "#ebebeb"] :background "#ebebeb"}
         {:name "saami" :colors ["#eab700" "#e64818" "#2c6393" "#eecfca"] :background "#e7e6e4"}
@@ -72,18 +72,16 @@
         {:name "rohlfs_1G" :colors ["#004996" "#567bae" "#60bf3c" "#d2deb1"] :stroke "#004996" :background "#fff8e7"}
         {:name "rohlfs_2" :colors ["#4d3d9a" "#f76975" "#ffffff" "#eff0dd"] :stroke "#211029" :background "#58bdbc"}
         {:name "rohlfs_3" :colors ["#abdfdf" "#fde500" "#58bdbc" "#eff0dd"] :stroke "#211029" :background "#f76975"}
-        {:name "rohlfs_4" :colors ["#fde500" "#2f2043" "#f76975" "#eff0dd"] :stroke "#211029" :background "#fbbeca"}]))
+        {:name "rohlfs_4" :colors ["#fde500" "#2f2043" "#f76975" "#eff0dd"] :stroke "#211029" :background "#fbbeca"}
 
 
-(defn palettes-lists
-  [{:name "retro" :colors ["#69766f" "#9ed6cb" "#f7e5cc" "#9d8f7f" "#936454" "#bf5c32" "#efad57"]}
-   {:name "retro-washedout" :colors ["#878a87" "#cbdbc8" "#e8e0d4" "#b29e91" "#9f736c" "#b76254" "#dfa372"]}
-   {:name "roygbiv-warm" :colors ["#705f84" "#687d99" "#6c843e" "#fc9a1a" "#dc383a" "#aa3a33" "#9c4257"]}
-   {:name "roygbiv-toned" :colors ["#817c77" "#396c68" "#89e3b7" "#f59647" "#d63644" "#893f49" "#4d3240"]}
-   {:name "present-correct" :colors ["#fd3741" "#fe4f11" "#ff6800" "#ffa61a" "#ffc219" "#ffd114" "#fcd82e" "#f4d730" "#ced562" "#8ac38f" "#79b7a0" "#72b5b1" "#5b9bae" "#6ba1b7" "#49619d" "#604791" "#721e7f" "#9b2b77" "#ab2562" "#ca2847"]}])
-
+        {:name "retro" :colors ["#69766f" "#9ed6cb" "#f7e5cc" "#9d8f7f" "#936454" "#bf5c32" "#efad57"] :background "#fff8e7"}
+        {:name "retro-washedout" :colors ["#878a87" "#cbdbc8" "#e8e0d4" "#b29e91" "#9f736c" "#b76254" "#dfa372"] :background "#fff8e7"}
+        {:name "roygbiv-warm" :colors ["#705f84" "#687d99" "#6c843e" "#fc9a1a" "#dc383a" "#aa3a33" "#9c4257"] :background "#fff8e7"}
+        {:name "roygbiv-toned" :colors ["#817c77" "#396c68" "#89e3b7" "#f59647" "#d63644" "#893f49" "#4d3240"] :background "#fff8e7"}
+        {:name "present-correct" :colors ["#fd3741" "#fe4f11" "#ff6800" "#ffa61a" "#ffc219" "#ffd114" "#fcd82e" "#f4d730" "#ced562" "#8ac38f" "#79b7a0" "#72b5b1" "#5b9bae" "#6ba1b7" "#49619d" "#604791" "#721e7f" "#9b2b77" "#ab2562" "#ca2847"] :background "#fff8e7"}]))
 
 (defn find-palette [name]
   (->> palettes
-    (filter #(= name (:name %)))
-    (first)))
+       (filter #(= name (:name %)))
+       (first)))
