@@ -12,11 +12,15 @@
 (defonce sketch (dom/getElement "sketch"))
 
 
-(defn create-sketch [n]
+(defn create-sketch
+  "Initialize sketch n."
+  [n]
   (condp = n
     1 (perlin-flow/create sketch)
     2 (tileset/create sketch)
     3 (lindenmayer/create sketch)))
 
 
+;; change this number to change
+;; what sketch is rendered
 (defonce s (create-sketch 1))

@@ -29,7 +29,22 @@
 (def length-high (+ mean-length length-variance))
 
 
-(defn sketch-draw [{:keys [first-draw op n]}]
+(defn sketch-update
+  "Returns the next state to render. Receives the current state as a paramter."
+  [{:keys [chan n] :as state}]
+  (let [op (async/poll! chan)]
+    (-> state
+      (assoc :first-draw false)
+      (assoc :op op)
+      (assoc :n (condp = op
+                  "[" (* n 0.8)
+                  "]" (/ n 0.8)
+                  n)))))
+
+
+(defn sketch-draw
+  "Draws the current state to the canvas. Called on each iteration after sketch-update."
+  [{:keys [first-draw op n]}]
   (q/pop-matrix)
   (if first-draw
     (do
@@ -51,25 +66,33 @@
   (q/push-matrix))
 
 
-(defn sketch-draw-all [{:keys [chan]}]
+(defn sketch-draw-all
+  "A variant of sketch-draw that consumes all operations from the channel and
+  draws their state to the canvas."
+  [{:keys [chan]}]
   (sketch-draw {:op nil :n 1})
   (doseq [op chan]
     (sketch-draw {:op op :n 1})
     1 chan))
 
 
-(defn sketch-update [{:keys [chan n] :as state}]
-  (let [op (async/poll! chan)]
-    (-> state
-      (assoc :first-draw false)
-      (assoc :op op)
-      (assoc :n (condp = op
-                  "[" (* n 0.8)
-                  "]" (/ n 0.8)
-                  n)))))
+(defn sketch-setup
+  "Returns the initial state to use for the update-render loop."
+  []
+  (q/frame-rate 100)
+  (apply q/background (:background palette))
+  {:first-draw true
+   :n          1
+   :chan       (async/to-chan
+                 (lindenmayer.data/generate
+                   "F"
+                   (lindenmayer.data/cool-trees 1)
+                   5))})
 
 
-(defn create [canvas]
+(defn create
+  "Creates a sketch that draws a lindenmayer tree from a channel of strings, e.g. like FF[+F][--FF][-F+F]."
+  [canvas]
   (js/setTimeout
     (fn []
       (q/defsketch lindenmayer
@@ -77,16 +100,7 @@
         :size [w h]
         :middleware [m/fun-mode]
         :settings (fn [] (q/pixel-density 2))
-        :setup (fn []
-                 (q/frame-rate 100)
-                 (apply q/background (:background palette))
-                 {:first-draw true
-                  :n          1
-                  :chan       (async/to-chan
-                                (lindenmayer.data/generate
-                                  "F"
-                                  (lindenmayer.data/cool-trees 1)
-                                  5))})
+        :setup sketch-setup
         :update sketch-update
         :draw sketch-draw
         :key-pressed save-image))

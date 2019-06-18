@@ -19,6 +19,7 @@
   (apply q/fill c1)
   (q/rect x1 y1 x2 y2))
 
+
 (defn draw-diagonal-square [x1 y1 x2 y2 c1 c2 dir]
   (draw-square x1 y1 x2 y2 c1)
   (apply q/fill c2)
@@ -30,6 +31,7 @@
   (q/vertex x1 y2)
   (q/end-shape))
 
+
 (defn generate-square [depth]
   (if (= depth 0)
     (if (< (rand) .5) \w \b)
@@ -39,9 +41,9 @@
           dr     (generate-square (dec depth))
           choose (rand (+ depth 2))]
       (cond
-        (< choose 1)   \w ;; <-- comment out these two lines to make squares equal in size
-        (< choose 2)   \b ;; <--
-        :else          [ul \- ur \/ dl \- dr]))))
+        (< choose 1) \w ;; <-- comment out these two lines to make squares equal in size
+        (< choose 2) \b ;; <--
+        :else        [ul \- ur \/ dl \- dr]))))
 
 
 (defn draw-segment [cells size]
@@ -59,12 +61,18 @@
           (draw-segment cell (/ size 2)))))
     (q/translate (- sx) (- sy))))
 
-(defn sketch-draw [state]
+
+(defn sketch-draw
+  "Draws the current state to the canvas. Called on each iteration after sketch-update."
+  [state]
   (apply q/background (:background palette))
   (q/translate padding-horizontal padding-horizontal)
   (draw-segment state (- (/ w 2) padding-horizontal)))
 
-(defn sketch-update [state]
+
+(defn sketch-update
+  "Returns the next state to render. Receives the current state as a paramter."
+  [state]
   [(generate-square depth) \-
    (generate-square depth) \/
    (generate-square depth) \-
@@ -72,17 +80,25 @@
    (generate-square depth) \-
    (generate-square depth)])
 
-(defn create [canvas]
+
+(defn sketch-setup
+  "Returns the initial state to use for the update-render loop."
+  []
+  (q/no-stroke)
+  (q/fill 0)
+  (q/rect-mode :corners)
+  (q/frame-rate 1)
+  (sketch-update []))
+
+
+(defn create
+  "Creates a sketch that draws a tileset from a seq strings, e.g. like w-w/b-[b-b]."
+  [canvas]
   (q/defsketch tileset
     :host canvas
     :size [w h]
     :settings (fn [] (q/pixel-density 2))
-    :setup (fn []
-             (q/no-stroke)
-             (q/fill 0)
-             (q/rect-mode :corners)
-             (q/frame-rate 1)
-             (sketch-update []))
+    :setup sketch-setup
     :update sketch-update
     :draw sketch-draw
     :middleware [m/fun-mode]

@@ -49,7 +49,9 @@
     (* angle Math/PI)))
 
 
-(defn sketch-update [state]
+(defn sketch-update
+  "Returns the next state to render. Receives the current state as a paramter."
+  [state]
   (map (fn [p]
          (assoc p
                 :x  (update-pos (:x p) (* speed (:vx p)) w)
@@ -60,7 +62,9 @@
        state))
 
 
-(defn sketch-draw [state]
+(defn sketch-draw
+  "Draws the current state to the canvas. Called on each iteration after sketch-update."
+  [state]
   (doseq [pnt state]
     (apply q/fill (conj (nth (:colors palette) (:color-index pnt)) opacity))
     (q/ellipse
@@ -70,15 +74,22 @@
       particle-size)))
 
 
-(defn create [canvas]
+(defn sketch-setup
+  "Returns the initial state to use for the update-render loop."
+  []
+  (q/no-stroke)
+  (apply q/background (:background palette))
+  (particles 1000))
+
+
+(defn create
+  "Creates a sketch that draws flow lines following a perlin noise field."
+  [canvas]
   (q/defsketch perlin-flow
     :host canvas
     :size [w h]
     :settings (fn [] (q/pixel-density 2))
-    :setup (fn []
-             (q/no-stroke)
-             (apply q/background (:background palette))
-             (particles 1000))
+    :setup sketch-setup
     :update sketch-update
     :draw sketch-draw
     :middleware [m/fun-mode]
