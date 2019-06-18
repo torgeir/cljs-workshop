@@ -13,7 +13,7 @@
 
 
 (defn generate
-  "Create a string representing the tree to draw."
+  "Create a Lindenmayer string representing the tree to draw."
   ([axiom rule steps]
    (let [f?          #(= "F" %)
          replacement (constantly (seq rule))
