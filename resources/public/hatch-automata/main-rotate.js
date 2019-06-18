@@ -136,11 +136,6 @@ let sketch = function(p) {
     }
 
     p.pop();
-
-    draw_frame();
-    if (options.stroke) {
-      draw_frame_stroke(strokeCol ? strokeCol : "#3f273a", options.strokeWidth);
-    }
   }
 
   function setup_grid() {
@@ -326,22 +321,6 @@ let sketch = function(p) {
     }
 
     p.pop();
-  }
-
-  function draw_frame() {
-    p.fill(255);
-    p.noStroke();
-    p.rect(0, 0, p.width, frame_dim);
-    p.rect(p.width - frame_dim, 0, frame_dim, p.height);
-    p.rect(0, 0, frame_dim, p.height);
-    p.rect(0, p.height - frame_dim, p.width, frame_dim);
-  }
-
-  function draw_frame_stroke(col, weight) {
-    p.noFill();
-    p.stroke(col);
-    p.strokeWeight(weight);
-    p.rect(frame_dim, frame_dim, p.width - 1 - frame_dim * 2, p.height - 1 - frame_dim * 2);
   }
 
   function get_seeds() {
