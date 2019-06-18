@@ -3,8 +3,8 @@ import generate from "isometric-automata";
 import * as tome from "chromotome";
 
 let sketch = function(p) {
-  const frame_dim = 30;
-  const grid_size = 472;
+  const frame_dim = 0;
+  const grid_size = 508;
 
   let gui;
   let options;
@@ -137,7 +137,7 @@ let sketch = function(p) {
 
     p.pop();
 
-    draw_frame(bg ? bg : "#d5cda1");
+    draw_frame();
     if (options.stroke) {
       draw_frame_stroke(strokeCol ? strokeCol : "#3f273a", options.strokeWidth);
     }
@@ -328,8 +328,8 @@ let sketch = function(p) {
     p.pop();
   }
 
-  function draw_frame(col) {
-    p.fill(col);
+  function draw_frame() {
+    p.fill(255);
     p.noStroke();
     p.rect(0, 0, p.width, frame_dim);
     p.rect(p.width - frame_dim, 0, frame_dim, p.height);
@@ -341,7 +341,7 @@ let sketch = function(p) {
     p.noFill();
     p.stroke(col);
     p.strokeWeight(weight);
-    p.rect(frame_dim, frame_dim, p.width - frame_dim * 2, p.height - frame_dim * 2);
+    p.rect(frame_dim, frame_dim, p.width - 1 - frame_dim * 2, p.height - 1 - frame_dim * 2);
   }
 
   function get_seeds() {
