@@ -4,13 +4,28 @@
 
 - Install [java 8](https://adoptopenjdk.net/)
 
-
 ### OS X
 
 ```sh
 brew update
 brew install clojure
 ```
+
+### Linux
+
+Don't use `apt install clojure`, it somehow messes up the figwheel initialization process later.
+
+Make sure you have the following dependencies installed `bash`, `curl` and `rlwrap`.
+
+Run the following
+
+```sh
+curl -O https://download.clojure.org/install/linux-install-1.10.1.447.sh
+chmod +x linux-install-1.10.1.447.sh
+sudo ./linux-install-1.10.1.447.sh
+```
+
+It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/clojure`.
 
 ### Windows
 
