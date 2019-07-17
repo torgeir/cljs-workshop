@@ -41,7 +41,7 @@ Install `Calva: Clojure & Clojurescript Interactive Programming`
 
 Hit `cmd + shift + p` and start type `jack` and hit enter.
 
-Select `Clojure CLI + Figwheel Main`, select `:repl`, wait, select `dev`.
+Select `Clojure CLI + Figwheel Main`, wait, don't select `:repl`, hit enter, wait, select `dev`.
 
 Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 
