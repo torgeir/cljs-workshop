@@ -1,4 +1,4 @@
-# Minimal `cljs` playground with repl and hot reloading support
+# Generative art playground, using ClojureScript with repl and hot reloading support
 
 ## Install
 
