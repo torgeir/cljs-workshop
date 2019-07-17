@@ -1,4 +1,6 @@
-# Generative art playground, using ClojureScript with repl and hot reloading support
+# Generative art playground
+
+A ClojureScript generative art playground, with a repl and hot reloading support.
 
 ## Install
 
