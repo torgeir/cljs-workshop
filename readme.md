@@ -49,12 +49,7 @@ Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 
 Install `cider`.
 
-Run `cider-jack-in-cljs`.
-
-### Manually
-```
-clj -Arepl
-```
+Run `cider-jack-in-cljs`
 
 ## Resource
 
