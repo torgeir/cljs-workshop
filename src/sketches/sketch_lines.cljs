@@ -24,7 +24,7 @@
 
 
 (defn point
-  "Creates a random point, on the form of [x, y] on a side of the screen."
+  "Creates a random point, on the form of [x y] on a side of the screen."
   [side]
   (condp = side
     :top    [(rand w) 0]
@@ -36,11 +36,10 @@
 (defn sketch-update
   "Returns the next state to render. Receives the current state as a paramter."
   [state]
-  (let [side (rand-nth sides)]
-    (assoc state :line [(point side)
-                        (point (->> sides
-                                 (remove (partial = side))
-                                 rand-nth))])))
+  (assoc state :line (->> sides
+                       (shuffle)
+                       (take 2)
+                       (map point))))
 
 
 (defn sketch-draw
