@@ -1,6 +1,7 @@
 (ns sketches.init
   (:require [clojure.pprint :as pp]
             [goog.dom :as dom]
+            [sketches.sketch-lines :as lines]
             [sketches.sketch-circle :as circle]
             [sketches.sketch-perlin-flow :as perlin-flow]
             [sketches.sketch-tileset :as tileset]
@@ -18,9 +19,10 @@
   [n]
   (condp = n
     0 (circle/create sketch)
-    1 (perlin-flow/create sketch)
-    2 (tileset/create sketch)
-    3 (lindenmayer/create sketch)))
+    1 (lines/create sketch)
+    2 (perlin-flow/create sketch)
+    3 (tileset/create sketch)
+    4 (lindenmayer/create sketch)))
 
 
 ;; change this number to change
