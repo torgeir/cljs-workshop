@@ -11,7 +11,7 @@
   (map (fn [palette]
          (-> palette
            (update :colors #(map hex-to-rgb %))
-           (update :background #(hex-to-rgb (or % #"#f2e8e4")))))
+           (update :background #(hex-to-rgb (or % "#f2e8e4")))))
        [{:name "frozen-rose" :colors ["#29368f" "#e9697b" "#1b164d" "#f7d996"] :background "#f2e8e4"}
         {:name "winter-night" :colors ["#122438" "#dd672e" "#87c7ca" "#ebebeb"] :background "#ebebeb"}
         {:name "saami" :colors ["#eab700" "#e64818" "#2c6393" "#eecfca"] :background "#e7e6e4"}
