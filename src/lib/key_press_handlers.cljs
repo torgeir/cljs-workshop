@@ -8,5 +8,6 @@
   iteration."
   [state e]
   (when (= :p (:key e))
-    (q/save (str (js/prompt "Enter name of the sketch to save:") ".jpeg")))
+    (when-let [filename (js/prompt "Enter name of the sketch to save:")]
+      (-> filename (str ".jpeg") q/save)))
   state)
