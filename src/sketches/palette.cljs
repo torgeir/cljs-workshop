@@ -112,7 +112,12 @@
         {:name "hilda06" :colors ["#f75952" "#ffce84" "#74b7b2" "#f6f6f6" "#b17d71"] :stroke "#0e0603" :background "#f6ecd4"}]
        ))
 
+
 (defn find-palette [name]
   (->> palettes
     (filter #(= name (:name %)))
     (first)))
+
+
+(defn rand-palette []
+  (rand-nth palettes))
