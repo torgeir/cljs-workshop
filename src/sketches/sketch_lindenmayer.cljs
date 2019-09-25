@@ -9,9 +9,11 @@
             [sketches.palette :refer [find-palette palettes]]))
 
 
-;; A2
-(def w 1240)
-(def h 1754)
+(def body (.-body js/document))
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
+
+
 (def start-height 200)
 
 (def palette (find-palette "hermes"))

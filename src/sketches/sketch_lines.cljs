@@ -5,13 +5,8 @@
             [sketches.palette :refer [find-palette]]))
 
 
-
 (def body (.-body js/document))
-
-
 (def w (.-clientWidth body))
-
-
 (def h (.-clientHeight body))
 
 

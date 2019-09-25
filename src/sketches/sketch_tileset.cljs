@@ -4,9 +4,10 @@
             [lib.key-press-handlers :refer [save-image]]
             [sketches.palette :refer [palettes find-palette]]))
 
-;; A2
-(def w 1240)
-(def h 1754)
+(def body (.-body js/document))
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
+
 
 (def padding-horizontal 110)
 (def spacing 0)

@@ -4,9 +4,10 @@
             [lib.key-press-handlers :refer [save-image]]
             [sketches.palette :refer [find-palette]]))
 
-;; A2
-(def w 1240)
-(def h 1754)
+(def body (.-body js/document))
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
+
 (def padding -20)
 
 ;; CHANGE THESE
@@ -21,8 +22,8 @@
 
 (defn particle [index]
   {:id    index ;; idea: set id equal to color-index?
-   :x     (* w (rand))
-   :y     (* h (rand))
+   :x     (rand w)
+   :y     (rand h)
    :vx    0
    :vy    0
    :adir  0

@@ -5,16 +5,18 @@
             [sketches.palette :refer [find-palette]]))
 
 
-;; A2
-(def w 1240)
-(def h 1754)
+(def body (.-body js/document))
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
+
+
 (def palette (find-palette "saami"))
 
 
 (defn create-circle [id]
   {:id id
-   :x  (* w (rand))
-   :y  (* h (rand))
+   :x  (rand w)
+   :y  (rand h)
    :vx 1
    :vy 1})
 
