@@ -29,20 +29,20 @@
 
 
 (defn sketch-update
-  "Returns the next state to render. Receives the current state as a paramter."
-  [state]
-  (assoc state :line (->> sides
-                       (shuffle)
-                       (take 2)
-                       (map point))))
+  "Returns the next line to render.."
+  []
+  (->> sides
+    (shuffle)
+    (take 2)
+    (map point)))
 
 
 (defn sketch-draw
-  "Draws the current state to the canvas. Called on each iteration after sketch-update."
-  [state]
+  "Draws the current line to the canvas. Called on each iteration after sketch-update."
+  [line]
+  (q/stroke-weight 1)
   (apply q/stroke (rand-nth (:colors palette)))
-  (when-let [line (:line state)]
-    (apply q/line (flatten line))))
+  (apply q/line line))
 
 
 (defn sketch-setup
@@ -50,7 +50,7 @@
   []
   (q/no-stroke)
   (apply q/background [0 0 0])
-  {:line nil})
+  [(point :top) (point :bottom)])
 
 
 (defn create
