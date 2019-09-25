@@ -1,7 +1,6 @@
 (ns sketches.sketch-lindenmayer
   (:require [quil.core :as q]
             [quil.middleware :as m]
-            [cljs.core.async :as async :include-macros true]
             [lib.polygram.dom :as dom]
             [lib.polygram.timers :as timers]
             [lib.lindenmayer.data :as lindenmayer.data]
