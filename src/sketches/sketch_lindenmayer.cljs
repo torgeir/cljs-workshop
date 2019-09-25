@@ -14,7 +14,7 @@
 (def h (.-clientHeight body))
 
 
-(def start-height 200)
+(def start-height 20)
 
 (def palette (find-palette "hermes"))
 (def min-weight 2)
@@ -22,7 +22,7 @@
 
 (def mean-angle 0.35) ;; Change to something between 0 and Math/TWO_PI
 (def angle-variance 0.15)
-(def mean-length 15)
+(def mean-length 10)
 (def length-variance 6)
 
 (def angle-low (- mean-angle angle-variance))
@@ -33,10 +33,11 @@
 
 (defn sketch-update
   "Returns the next state to render. Receives the current state as a paramter."
-  [{:keys [chan n] :as state}]
-  (let [op (async/poll! chan)]
+  [{:keys [ops n] :as state}]
+  (let [op (first ops)]
     (-> state
       (assoc :first-draw false)
+      (assoc :ops (rest ops))
       (assoc :op op)
       (assoc :n (condp = op
                   "[" (* n 0.8)
@@ -69,27 +70,27 @@
 
 
 (defn sketch-draw-all
-  "A variant of sketch-draw that consumes all operations from the channel and
+  "A variant of sketch-draw that consumes all operations and
   draws their state to the canvas."
-  [{:keys [chan]}]
+  [{:keys [ops]}]
+  (apply q/background (:background palette))
+  (q/push-matrix)
   (sketch-draw {:op nil :n 1 :first-draw true})
-  (doseq [op chan]
-    (sketch-draw {:op op :n 1 :first-draw false})
-    1 chan))
+  (doseq [op ops]
+    (sketch-draw {:op op :n 1 :first-draw false})))
 
 
 (defn sketch-setup
   "Returns the initial state to use for the update-render loop."
   []
-  (q/frame-rate 100)
   (apply q/background (:background palette))
+  (q/frame-rate 1000)
   {:first-draw true
    :n          1
-   :chan       (async/to-chan
-                 (lindenmayer.data/generate
-                   "F"
-                   (lindenmayer.data/cool-trees 1)
-                   5))})
+   :ops        (lindenmayer.data/generate
+                 "F"
+                 (lindenmayer.data/cool-trees 1)
+                 5)})
 
 
 (defn create
