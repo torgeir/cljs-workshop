@@ -31,7 +31,9 @@
 
 
 (defn particles [n]
-  (map (fn [i] (particle i)) (range n)))
+  (map (fn [i]
+         (particle i))
+       (range n)))
 
 
 (defn update-pos [curr delta max]
