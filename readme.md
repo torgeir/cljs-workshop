@@ -19,7 +19,7 @@ Don't use `apt install clojure`, it somehow messes up the figwheel initializatio
 
 Make sure you have the following dependencies installed `bash`, `curl` and `rlwrap`.
 
-Run the following
+Run the following:
 
 ```sh
 curl -O https://download.clojure.org/install/linux-install-1.10.1.447.sh
@@ -31,7 +31,14 @@ It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/c
 
 ### Windows
 
-Use the provided `.\clj.exe` as a replacement for the `clj` command.
+Make sure you have `bash`, and `curl` installed.
+
+Run the following:
+
+```sh
+curl -O https://download.clojure.org/install/win-install-1.10.1.469.ps1
+powershell ./win-install-1.10.1.469.ps1
+```
 
 ## REPL on steroids
 
