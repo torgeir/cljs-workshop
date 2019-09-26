@@ -7,7 +7,11 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 - Install [java 8](https://adoptopenjdk.net/)
 
 ### OS X
-Installer homebrew `/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+Installer homebrew 
+```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
 ```sh
 brew update
 brew install clojure
