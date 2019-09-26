@@ -84,3 +84,5 @@ https://clojurescript.org/guides/quick-start
 
 - Color palettes
 https://kgolid.github.io/chromotome-site/
+
+- Quil API http://quil.info/api 
