@@ -76,6 +76,11 @@ Run `cider-jack-in-cljs`
 
 ## Resource
 
+- Cheat sheet
 https://cljs.info/cheatsheet/
 
+- Clojure quick start
 https://clojurescript.org/guides/quick-start
+
+- Color palettes
+https://kgolid.github.io/chromotome-site/
