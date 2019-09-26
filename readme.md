@@ -60,6 +60,8 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 Install `Calva: Clojure & Clojurescript Interactive Programming`
 
+Open `src/sketches/init.cljs`.
+
 Hit `cmd + shift + p` and start type `jack` and hit enter.
 
 Select `Clojure CLI + Figwheel Main`, hit enter, wait, select `dev`, hit enter.
