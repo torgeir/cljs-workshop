@@ -35,10 +35,33 @@ Make sure you have `bash`, and `curl` installed.
 
 Run the following:
 
+Bash:
 ```sh
 curl -O https://download.clojure.org/install/win-install-1.10.1.469.ps1
 powershell ./win-install-1.10.1.469.ps1
 ```
+
+Powershell:
+```ps
+Invoke-RestMethod -Uri https://download.clojure.org/install/win-install-1.10.1.469.ps1 -OutFile installer.ps1
+./installer.ps1
+```
+
+If you encounter the following error when running the installer:
+```sh
+path\to\file\win-install-1.10.1.469.ps1 cannot be loaded. The file path\to\file\win-install-1.10.1.469.ps1 is not digitally signed.
+```
+
+...try running the following command in PowerShell:
+```ps
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
+...and try again.
+
+
+
+
 
 ## REPL on steroids
 
