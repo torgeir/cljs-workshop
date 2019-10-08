@@ -33,6 +33,8 @@ sudo ./linux-install-1.10.1.447.sh
 
 It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/clojure`.
 
+Run it with `./linux-install-1.10.1.447.sh --prefix somewhere/else/` if you want the files installed to `somewhere/else/` instead.
+
 ### Windows
 
 Open PowerShell and run the following:
@@ -53,9 +55,6 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ```
 
 ...and try again.
-
-
-
 
 
 ## Run it, with a REPL on steriods inside your favourite editor
