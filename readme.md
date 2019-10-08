@@ -58,7 +58,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 
 
-## REPL on steroids
+## Run it, with a REPL on steriods inside your favourite editor
 
 ### VSCode
 
@@ -77,6 +77,12 @@ Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 Install `cider`.
 
 Run `cider-jack-in-cljs`
+
+## Run it, without a REPL and editor integration
+
+### Terminal
+
+Run `clojure -m figwheel.main -b dev` from the project root.
 
 ## Resource
 
