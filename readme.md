@@ -7,7 +7,7 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 - Install [java 8](https://adoptopenjdk.net/)
 
 ### OS X
-Installer homebrew 
+Installer homebrew
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
@@ -94,4 +94,4 @@ https://clojurescript.org/guides/quick-start
 - Color palettes
 https://kgolid.github.io/chromotome-site/
 
-- Quil API http://quil.info/api 
+- Quil API http://quil.info/api
