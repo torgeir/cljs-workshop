@@ -5,6 +5,6 @@ RUN clojure -m figwheel.main --build-once dev
 
 FROM clojure:tools-deps
 COPY --from=base /root/.m2 /root/.m2
-COPY --from=base /cljs-workshop /cljs-workshop
+COPY --from=base /cljs-workshop /root/cljs-workshop
 WORKDIR /cljs-workshop
 CMD ["clojure", "-m", "figwheel.main", "-b", "dev"]
