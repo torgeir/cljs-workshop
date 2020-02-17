@@ -2,11 +2,29 @@
 
 A ClojureScript generative art playground, with a repl and hot reloading support.
 
+
 ## Install
+
+### Docker
+
+- Install [Docker Desktop](https://www.docker.com/products/docker-desktop)
+
+Run the workshop
+
+```
+docker run -it -p9500:9500 torgeir/cljs-workshop
+```
+
+It will say it can't open the browser, but that's ok, do it yourself:
+
+Open [localhost:9500](http://localhost:9500), you're good to go, start modifying the sketches!
+
+
+### Other ways
 
 - Install [java 8](https://adoptopenjdk.net/)
 
-### OS X
+#### OS X
 Installer homebrew
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -17,7 +35,7 @@ brew update
 brew install clojure
 ```
 
-### Linux
+#### Linux
 
 Don't use `apt install clojure`, it somehow messes up the figwheel initialization process later.
 
@@ -35,7 +53,7 @@ It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/c
 
 Run it with `./linux-install-1.10.1.447.sh --prefix somewhere/else/` if you want the files installed to `somewhere/else/` instead.
 
-### Windows
+#### Windows
 
 Open PowerShell and run the following:
 
@@ -57,9 +75,11 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 ...and try again.
 
 
-## Run it, with a REPL on steriods inside your favourite editor
+### Run it, with a REPL on steriods inside your favourite editor
 
-### VSCode
+(when not using the docker approach)
+
+#### VSCode
 
 Install `Calva: Clojure & Clojurescript Interactive Programming`
 
@@ -71,19 +91,13 @@ Select `Clojure CLI + Figwheel Main`, hit enter, wait, select `dev`, hit enter.
 
 Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 
-### Emacs
+#### Emacs
 
 Install `cider`.
 
 Run `cider-jack-in-cljs`
 
-## Run it, without a REPL and editor integration
-
-### Terminal
-
-Run `clojure -m figwheel.main -b dev` from the project root.
-
-## Resource
+## Resources
 
 - Cheat sheet
 https://cljs.info/cheatsheet/
