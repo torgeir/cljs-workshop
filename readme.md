@@ -17,7 +17,14 @@ docker run -it -p9500:9500 torgeir/cljs-workshop
 
 It will say it can't open the browser, but that's ok, do it yourself:
 
-Open [localhost:9500](http://localhost:9500), you're good to go, start modifying the sketches!
+Open [localhost:9500](http://localhost:9500) in the browser.
+
+To edit files inside the docker container start modifying the sketches:
+
+- Click the Extensions tab in vscode
+- Install the `Remote - Containers` extension
+- A new icon `Remove Explorer` on the left shows running docker containers
+- Right click and choose `Open folder in container` on the folder `cljs-workshop`
 
 
 ### Other ways
@@ -26,6 +33,7 @@ Open [localhost:9500](http://localhost:9500), you're good to go, start modifying
 
 #### OS X
 Installer homebrew
+
 ```
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
