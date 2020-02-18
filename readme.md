@@ -19,13 +19,14 @@ It will say it can't open the browser, but that's ok, do it yourself:
 
 Open [localhost:9500](http://localhost:9500) in the browser.
 
-To edit files inside the docker container start modifying the sketches:
+To be able to edit files inside the docker container:
 
 - Click the Extensions tab in vscode
 - Install the `Remote - Containers` extension
-- A new icon `Remove Explorer` on the left shows running docker containers
-- Right click and choose `Open folder in container` on the folder `cljs-workshop`
+- A new icon `Remote Explorer` on the left shows running docker containers
+- Right click on the folder `cljs-workshop` and choose `Open folder in container`
 
+You are ready to edit sketches!
 
 ### Other ways
 
