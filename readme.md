@@ -65,7 +65,7 @@ Run it with `./linux-install-1.10.1.447.sh --prefix somewhere/else/` if you want
 
 #### Windows
 
-Open PowerShell and run the following:
+Open PowerShell as administrator (right click it an choose "run as administrator") and run the following:
 
 ```ps
 Invoke-RestMethod -Uri https://download.clojure.org/install/win-install-1.10.1.469.ps1 -OutFile installer.ps1
