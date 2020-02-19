@@ -84,6 +84,9 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 ...and try again.
 
+### Run it manually
+
+`clojure -m figwheel.main -b dev`
 
 ### Run it, with a REPL on steriods inside your favourite editor
 
