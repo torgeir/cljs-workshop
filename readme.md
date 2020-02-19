@@ -117,6 +117,13 @@ Install `cider`.
 
 Run `cider-jack-in-cljs`
 
+## Build for dockerhub
+
+```
+docker build . -t torgeir/cljs-workshop:latest
+docker push torgeir/cljs-workshop:latest
+```
+
 ## Resources
 
 - Cheat sheet

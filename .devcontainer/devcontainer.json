@@ -1,0 +1,16 @@
+{
+  "image": "torgeir/cljs-workshop",
+  "runArgs": [],
+  "forwardPorts": [
+    9500
+  ],
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "betterthantomorrow.calva",
+        "borkdude.clj-kondo",
+        "naumovs.color-highlight"
+      ]
+    }
+  }
+}
