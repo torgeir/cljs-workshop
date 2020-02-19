@@ -22,7 +22,7 @@ Open [localhost:9500](http://localhost:9500) in the browser.
 To be able to edit files inside the docker container:
 
 - Click the Extensions tab in vscode
-- Install the `Remote - Containers` extension
+- Install the `Remote - Containers` extension and the `Calva: Clojure & Clojurescript Interactive Programming` extension
 - A new icon `Remote Explorer` on the left shows running docker containers
 - Right click on the container `torgeir/cljs-workshop` and choose `Connect to container`
 - When the new window opens, click `Open folder` and enter `/root/cljs-workshop`
