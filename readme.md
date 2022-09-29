@@ -10,6 +10,12 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 - Install packages for docker using your favorite macOS package manager
 - Install colima to use as container runtime
 
+Start colima
+
+```
+colima start
+```
+
 Run the workshop
 
 ```
