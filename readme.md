@@ -93,7 +93,7 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 
 ### Run it manually
 
-`clojure -m figwheel.main -b dev`
+`clojure -M -m figwheel.main -b dev`
 
 ### Run it, with a REPL on steriods inside your favourite editor
 
@@ -107,7 +107,7 @@ Open `src/sketches/init.cljs`.
 
 Hit `cmd + shift + p` and start type `jack` and hit enter.
 
-Select `Clojure CLI + Figwheel Main`, hit enter, wait, select `dev`, hit enter.
+Select `deps.edn + Figwheel Main`, hit enter, wait, select `dev`, hit enter.
 
 Evaluate something in the browser from your editor with `ctrl+alt+c e`.
 
