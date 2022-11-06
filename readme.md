@@ -52,7 +52,7 @@ When you see
 
 Wait until the green `clj` switches to `cljs` or `cljc/cljs` in the bottom row of vscode.
 
-You are connected to an in-browser repl, and can evaluate cljs code on the fly!
+_**You are connected to an in-browser repl, and can evaluate cljs code on the fly!**_
 
 **Try it*
 
