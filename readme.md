@@ -5,7 +5,7 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 **Prerequisites**
 
 - Install packages for docker using your favorite package manager
-- Install colima or docker desktop, to use as container runtime
+- Install colima or docker desktop, to use as container runtime. E.g. [like this](https://hjerpbakk.com/blog/2022/02/01/replacing-docker-desktop) on a mac
 - Start colima or docker desktop
 
 ## Setup: VSCode: hot reload on save + browser repl for live code evaluation
