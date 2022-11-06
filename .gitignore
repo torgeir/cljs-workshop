@@ -3,3 +3,8 @@
 /target
 /.cpcache
 /.rebel_readline_history
+/.calva/
+/.clj-kondo/
+/.nrepl-port
+/.lsp/
+/readme.md.tmp
