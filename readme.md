@@ -2,19 +2,54 @@
 
 A ClojureScript generative art playground, with a repl and hot reloading support.
 
+**Prerequisits**
 
-## Install
+- Install packages for docker using your favorite package manager
+- Install colima or docker desktop, to use as container runtime
+- Start colima or docker desktop
 
-### colima (docker)
+## Setup: VSCode: hot reload on save + browser repl for live code evaluation
 
-- Install packages for docker using your favorite macOS package manager
-- Install colima to use as container runtime
+**Step 1**
 
-Start colima
+- Clone and open the repo in vscode
 
+```sh
+git clone git@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
 ```
-colima start
-```
+
+**Step 2**
+
+- Press "Reopen in container" in the lower right corner
+
+**Step 3**
+
+When you are greeted by Calva
+
+- Open `src/sketches/init.cljs`.
+- Hit `cmd + shift + p` and start type `jack`, hit enter.
+- Select `deps.edn + Figwheel Main`, hit enter
+
+**Step 4**
+
+When you see the following output in the `terminal` tab
+
+> ...
+> [Figwheel] Starting Server at http://localhost:9500
+> ...
+
+- Open the url in your browser
+
+**Step 5**
+
+Wait until the green "clj" switches to "cljs" or "cljc/cljs" in the bottom row of vscode.
+
+You are connected to an in-browser repl, and can evaluate cljs code on the fly! E.g. with the following calva commands (among others)
+
+- "Calva: Evaluate current form"
+- "Calva: Evaluate current enclosing form"
+
+## Alternate setup: VSCode: hot reload on save
 
 Run the workshop
 
@@ -22,13 +57,13 @@ Run the workshop
 docker run -it -p9500:9500 -p4000:4000 torgeir/cljs-workshop
 ```
 
-It will say it can't open the browser, but that's ok, do it yourself:
+It will say it can't open the browser, do it yourself:
 
 Open [localhost:9500](http://localhost:9500) in the browser.
 
 To be able to edit files inside the docker container:
 
-- Click the Extensions tab in vscode
+- Click the Extensions tab in VSCode
 - Install the `Remote - Containers` extension and the `Calva: Clojure & Clojurescript Interactive Programming` extension
 - A new icon `Remote Explorer` on the left shows running docker containers
 - Right click on the container `torgeir/cljs-workshop` and choose `Connect to container`
@@ -36,64 +71,15 @@ To be able to edit files inside the docker container:
 
 You are ready to edit sketches!
 
-### Other ways
+## Manual setup
 
-- Install [java 8](https://adoptopenjdk.net/)
+If all else fails:
 
-#### OS X
-Installer homebrew
+Clone the repo and run
 
 ```
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+clojure -M -m figwheel.main -b dev
 ```
-
-```sh
-brew update
-brew install clojure
-```
-
-#### Linux
-
-Don't use `apt install clojure`, it somehow messes up the figwheel initialization process later.
-
-Make sure you have the following dependencies installed `bash`, `curl` and `rlwrap`.
-
-Run the following:
-
-```sh
-curl -O https://download.clojure.org/install/linux-install-1.10.1.447.sh
-chmod +x linux-install-1.10.1.447.sh
-sudo ./linux-install-1.10.1.447.sh
-```
-
-It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/clojure`.
-
-Run it with `./linux-install-1.10.1.447.sh --prefix somewhere/else/` if you want the files installed to `somewhere/else/` instead.
-
-#### Windows
-
-Open PowerShell as administrator (right click it an choose "run as administrator") and run the following:
-
-```ps
-Invoke-RestMethod -Uri https://download.clojure.org/install/win-install-1.10.1.469.ps1 -OutFile installer.ps1
-./installer.ps1
-```
-
-If you encounter the following error when running the installer:
-```sh
-path\to\file\win-install-1.10.1.469.ps1 cannot be loaded. The file path\to\file\win-install-1.10.1.469.ps1 is not digitally signed.
-```
-
-...try running the following:
-```ps
-Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-```
-
-...and try again.
-
-### Run it manually
-
-`clojure -M -m figwheel.main -b dev`
 
 ### Run it, with a REPL on steriods inside your favourite editor
 
@@ -117,9 +103,71 @@ Install `cider`.
 
 Run `cider-jack-in-cljs`
 
-## Build for dockerhub
+Evalute something with `C-c C-c`
+
+## Installing clojure
+
+**Not needed if you have colima/docker.**
+
+- Install a minimum of [java 8](https://adoptopenjdk.net/)
+
+### MacOS
+
+Installer homebrew
 
 ```
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Install clojure
+
+```sh
+brew install clojure/tools/clojure
+```
+
+### Linux
+
+**outdated, see https://clojure.org/guides/install_clojure**
+
+#### Homebrew
+
+```sh
+brew install clojure/tools/clojure
+```
+
+#### Manually
+
+Don't use `apt install clojure` if you are on ubuntu, it somehow messes up the figwheel initialization process later.
+
+Make sure you have the following dependencies installed `bash`, `curl` and `rlwrap`.
+
+Run the following:
+
+```sh
+curl -O https://download.clojure.org/install/linux-install-1.11.1.1182.sh
+chmod +x linux-install-1.11.1.1182.sh
+sudo ./linux-install-1.11.1.1182.sh
+```
+
+It creates `/usr/local/bin/clj`, `/usr/local/bin/clojure`, and `/usr/local/lib/clojure`.
+
+Run it with `./linux-install-1.11.1.1182.sh --prefix somewhere/else/` if you want the files installed to `somewhere/else/` instead.
+
+### Windows
+
+**outdated, see to https://clojure.org/guides/install_clojure and https://github.com/clojure/tools.deps.alpha/wiki/clj-on-Windows**
+
+## Build for dockerhub
+
+Given your dockerhub username is `torgeir`, login
+
+```sh
+docker login -u torgeir
+```
+
+Build and deploy
+
+```sh
 docker build . -t torgeir/cljs-workshop:latest
 docker push torgeir/cljs-workshop:latest
 ```
