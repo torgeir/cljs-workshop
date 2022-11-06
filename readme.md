@@ -2,7 +2,7 @@
 
 A ClojureScript generative art playground, with a repl and hot reloading support.
 
-**Prerequisits**
+**Prerequisites**
 
 - Install packages for docker using your favorite package manager
 - Install colima or docker desktop, to use as container runtime
@@ -34,9 +34,10 @@ When you are greeted by Calva
 
 When you see the following output in the `terminal` tab
 
+> [Figwheel] figwheel-main.edn is valid \(ツ)/
+> [Figwheel] Compiling build dev to "target/public/cljs-out/dev-main.js"
 > ...
 > [Figwheel] Starting Server at http://localhost:9500
-> ...
 
 - Open the url in your browser
 
@@ -44,10 +45,13 @@ When you see the following output in the `terminal` tab
 
 Wait until the green "clj" switches to "cljs" or "cljc/cljs" in the bottom row of vscode.
 
-You are connected to an in-browser repl, and can evaluate cljs code on the fly! E.g. with the following calva commands (among others)
+You are connected to an in-browser repl, and can evaluate cljs code on the fly!
 
-- "Calva: Evaluate current form"
-- "Calva: Evaluate current enclosing form"
+**Try it*
+
+- Type `(+ 1 2)` and place the cursor behind the last paren.
+- `cmd + shift + p` and type `Calva: Evaluate current form`.
+- You should see `=> 3`.
 
 ## Alternate setup: VSCode: hot reload on save
 
