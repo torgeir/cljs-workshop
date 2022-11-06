@@ -35,8 +35,11 @@ When you are greeted by Calva
 Wait through the following
 
 > [Figwheel] figwheel-main.edn is valid \(ツ)/
+> 
 > [Figwheel] Compiling build dev to "target/public/cljs-out/dev-main.js"
+> 
 > ...
+> 
 > [Figwheel:WARNING] ...
 
 When you see
