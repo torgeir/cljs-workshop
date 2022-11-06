@@ -172,6 +172,8 @@ docker build . -t torgeir/cljs-workshop:latest
 docker push torgeir/cljs-workshop:latest
 ```
 
+It deploys to https://hub.docker.com/repository/docker/torgeir/cljs-workshop
+
 ## Resources
 
 - Cheat sheet
