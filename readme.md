@@ -19,7 +19,7 @@ colima start
 Run the workshop
 
 ```
-docker run -it -p9500:9500 torgeir/cljs-workshop
+docker run -it -p9500:9500 -p4000:4000 torgeir/cljs-workshop
 ```
 
 It will say it can't open the browser, but that's ok, do it yourself:
