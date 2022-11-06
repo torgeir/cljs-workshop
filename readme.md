@@ -26,32 +26,43 @@ git clone git@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
 
 When you are greeted by Calva
 
-- Open `src/sketches/init.cljs`.
+- Open `src/help/tutorial.cljs`.
 - Hit `cmd + shift + p` and start type `jack`, hit enter.
 - Select `deps.edn + Figwheel Main`, hit enter
 
 **Step 4**
 
-When you see the following output in the `terminal` tab
+Wait through the following
 
 > [Figwheel] figwheel-main.edn is valid \(ツ)/
 > [Figwheel] Compiling build dev to "target/public/cljs-out/dev-main.js"
 > ...
-> [Figwheel] Starting Server at http://localhost:9500
+> [Figwheel:WARNING] ...
 
-- Open the url in your browser
+When you see
+
+> Your application running on port 9500 is available.
+
+- Click to open the url in your browser
 
 **Step 5**
 
-Wait until the green "clj" switches to "cljs" or "cljc/cljs" in the bottom row of vscode.
+Wait until the green `clj` switches to `cljs` or `cljc/cljs` in the bottom row of vscode.
 
 You are connected to an in-browser repl, and can evaluate cljs code on the fly!
 
 **Try it*
 
-- Type `(+ 1 2)` and place the cursor behind the last paren.
-- `cmd + shift + p` and type `Calva: Evaluate current form`.
-- You should see `=> 3`.
+- Place the cursor behind `(+ 1 2)`.
+- `cmd + shift + p` and type "evaluate", and select `Calva: Evaluate current form`.
+
+What just happened?
+
+- You compiled clojurescript code to js.
+- Sent it to the browser.
+- Evaluated it and got a result back.
+- That was sent to you editor and displayed inline.
+- State you keep will persist until the browser window is closed.
 
 ## Alternate setup: VSCode: hot reload on save
 
