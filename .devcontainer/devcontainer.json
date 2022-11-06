@@ -2,6 +2,7 @@
   "image": "torgeir/cljs-workshop",
   "runArgs": [],
   "forwardPorts": [
+    4000,
     9500
   ],
   "customizations": {
