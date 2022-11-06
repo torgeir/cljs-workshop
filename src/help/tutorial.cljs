@@ -2,6 +2,7 @@
   (:require [goog.dom :as dom]))
 
 
+;; LISP - LISt Processing
 ;; "everything is a list"
 (+ 1 2)
 (* 3 (+ 1 2))
@@ -41,7 +42,8 @@ nil
 
 
 ;; keywords can look themselves up in a map
-(:one {:one "hello" :two "more"})
+(:one {:one "hello"
+       :two "more"})
 
 
 ;; set
@@ -64,9 +66,9 @@ nil
    (+ a b)) 1 2)
 
 
-;; def defines a
+;; def defines a var
 (def add
-  "adds two numbers"
+  "Add two numbers."
   (fn [a b]
     (+ a b)))
 (add 1 2)
@@ -74,7 +76,7 @@ nil
 
 ;; defn defines a function (shorthand for the above)
 (defn also-add
-  "also adds two numbers"
+  "Add two numbers, with a named function."
   [a b]
   (+ a b))
 (also-add 1 2)
@@ -124,12 +126,17 @@ m
 ;; cljs, embraces js - all of js is available in cljs
 (new js/Date)
 (.getTime (new js/Date))
+(js/console.log "yeeah")
+
+
+(comment
+  (js/alert "hei"))
 
 
 ;; clojure is built with the google closure compiler
 ;; meaning it has access to the closure-library
 ;; https://google.github.io/closure-library/api/goog.html
-(defonce body (dom/getElement "app"))
+(defonce sketch-el (dom/getElement "sketch"))
 
 
 ;; map, filter reduce
@@ -138,7 +145,8 @@ m
 (reduce + (range 4))
 
 
-;; data is code, code is data!?
+;; the language is homoiconic
+;; i.e. data is code, code is data!?
 '(1 2 3)
 '(if true 42 666)
 (first '(if true 42 666))
