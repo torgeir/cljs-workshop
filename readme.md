@@ -20,7 +20,8 @@ git clone git@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
 
 **Step 2**
 
-- Press "Reopen in container" in the lower right corner
+- Click "Install" when prompted to install the "Dev Containers" extension.
+- Click "Reopen in container" when prompted to open the repo's dev container.
 
 **Step 3**
 
