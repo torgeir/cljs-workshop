@@ -55,7 +55,7 @@ Wait until the green `clj` switches to `cljs` or `cljc/cljs` in the bottom row o
 
 _**You are connected to an in-browser repl, and can evaluate cljs code on the fly!**_
 
-**Try it*
+**Try it**
 
 - Place the cursor behind `(+ 1 2)`.
 - `cmd + shift + p` and type "evaluate", and select `Calva: Evaluate current form`.
@@ -67,6 +67,13 @@ What just happened?
 - Evaluated it and got a result back.
 - That was sent to you editor and displayed inline.
 - State you keep will persist until the browser window is closed.
+
+If jack in fails with an error like this, try the above process again.
+
+```
+Killed
+Jack-in process exited. Status: 137
+```
 
 ## Alternate setup: VSCode: hot reload on save
 
