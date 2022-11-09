@@ -33,7 +33,7 @@ When you are greeted by Calva
 
 **Step 4**
 
-Wait through the following
+Wait through the following, and ignore the prompt asking to open port localhost:4000..
 
 > [Figwheel] figwheel-main.edn is valid \(ツ)/
 > 
