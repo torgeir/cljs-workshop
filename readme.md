@@ -68,7 +68,7 @@ What just happened?
 - That was sent to you editor and displayed inline.
 - State you keep will persist until the browser window is closed.
 
-If jack in fails with an error like this, try the above process again.
+If jack in fails with an error like this, try the above jack in process again.
 
 ```
 Killed
