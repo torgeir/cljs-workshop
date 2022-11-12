@@ -68,11 +68,14 @@ What just happened?
 - That was sent to you editor and displayed inline.
 - State you keep will persist until the browser window is closed.
 
-If jack in fails with an error like this, try the above jack in process again.
+If jack in fails with an error like this, make sure you gave colima/docker desktop enough cpu and memory, the defaults are pretty low.
 
 ```
-Killed
-Jack-in process exited. Status: 137
+> Killed
+> Jack-in process exited. Status: 137
+
+colima stop
+colima start -c 4 -m 16
 ```
 
 ## Alternate setup: VSCode: hot reload on save
