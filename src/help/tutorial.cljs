@@ -2,6 +2,13 @@
   (:require [goog.dom :as dom]))
 
 
+;; https://clojurescript.org/
+;; https://xkcd.com/297/
+;; functional, simple, dynamic, timelessness
+;; data-oriented
+;; perplexing and powerful
+
+
 ;; LISP - LISt Processing
 ;; "everything is a list"
 (+ 1 2)
@@ -18,7 +25,8 @@
 nil
 
 
-;; seq
+;; sequences
+;; abstraction across sets, maps, vectors, strings, file system structures, directories, java collections
 '(1 2 3)
 (list 1 2 3)
 
@@ -26,6 +34,7 @@ nil
 ;; clojure has literal data types as well
 ;; vector
 [1 2 3]
+(nth [1 2 3] 0)
 
 
 ;; commas are optional, nobody uses them
@@ -97,6 +106,8 @@ nil
 (assoc {} :nokkel "verdi")
 (get-in {:one {:two 2}} [:one :two])
 (get-in {:one {:two 2}} [:one :two :three] 666)
+(merge {:a 1 :b 2} {:c 3})
+(merge-with + {:a 1 :b 2} {:a 1 :b 2})
 ;; ++ https://cljs.info/cheatsheet/
 
 
@@ -133,16 +144,40 @@ m
   (js/alert "hei"))
 
 
-;; clojure is built with the google closure compiler
+;; cljs is built with the google closure compiler
 ;; meaning it has access to the closure-library
 ;; https://google.github.io/closure-library/api/goog.html
-(defonce sketch-el (dom/getElement "sketch"))
+(defonce sketch-el
+  (dom/getElement "sketch"))
 
 
 ;; map, filter reduce
 (map inc (range 3))
 (filter pos? (range -10 10))
 (reduce + (range 4))
+
+
+;; lazy sequences
+(take 20 (drop 100 (iterate inc 1)))
+
+(defn fib-pair [[a b]] [b (+ a b)])
+(nth (map first (iterate fib-pair [1 1])) 500)
+
+(defn factorial [n] (apply * (take n (iterate inc 1))))
+(factorial 5)
+
+
+;; every?, some, nil?, not-every?, not-any?, odd?, number?
+(not-any? odd? [2 4 6])
+(some nil? [1 nil 3 4])
+
+
+;; no tail recursion by default
+(loop [n 10
+       acc 0]
+  (if (zero? n)
+    acc
+    (recur (dec n) (inc acc))))
 
 
 ;; the language is homoiconic
@@ -156,3 +191,27 @@ m
 (let [code '(if true 42 666)]
   (concat (take 2 code)
           (reverse (drop 2 code))))
+
+
+;; macros, "fix the language"
+;; (defmacro unless [test body]
+;;   (list 'if (list 'not test) body))
+
+;; (let [something nil]
+;;   (unless something 42))
+
+
+;;;;
+
+
+;; + simple, powerful, flexible
+;; + lazy evaluation, powerful abstractions
+;; + concurrency story (software transactional memory: atoms, agents, refs)
+;; + dense, terse, fewer parens, restrained
+;; + ecosystem
+
+
+;; - prefix notation, readability, dense, terse
+;; - dynamicly typed?
+;; - learnig curve, accessability
+;; - no tail recursion
