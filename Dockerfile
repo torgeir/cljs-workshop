@@ -7,4 +7,4 @@ FROM clojure:tools-deps
 COPY --from=base /root/.m2 /root/.m2
 COPY --from=base /cljs-workshop /root/cljs-workshop
 WORKDIR /root/cljs-workshop
-CMD ["clojure", "-M", "-m", "figwheel.main", "-b", "dev"]
+CMD clojure -M -m figwheel.main -b dev

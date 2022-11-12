@@ -5,6 +5,8 @@
     9500,
     4000
   ],
+  "overrideCommand": true,
+  "workspaceFolder": "/root/cljs-workshop",
   "customizations": {
     "vscode": {
       "extensions": [
