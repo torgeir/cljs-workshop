@@ -8,7 +8,7 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 - Install colima or docker desktop, to use as container runtime. E.g. [like this](https://hjerpbakk.com/blog/2022/02/01/replacing-docker-desktop) on a mac
 - Start colima or docker desktop
 
-## Setup: VSCode: hot reload on save + browser repl for live code evaluation
+## Recommended setup: VSCode: Using the devcontainer
 
 **Step 1**
 
@@ -58,7 +58,9 @@ _**You are connected to an in-browser repl, and can evaluate cljs code on the fl
 **Try it**
 
 - Place the cursor behind `(+ 1 2)`.
-- `cmd + shift + p` and type "evaluate", and select `Calva: Evaluate current form`.
+- Evaluate something!
+  - Hit `control+enter`, or
+  - `cmd + shift + p` and type "evaluate", and select `Calva: Evaluate current form`
 
 What just happened?
 
@@ -68,17 +70,7 @@ What just happened?
 - That was sent to you editor and displayed inline.
 - State you keep will persist until the browser window is closed.
 
-If jack in fails with an error like this, make sure you gave colima/docker desktop enough cpu and memory, the defaults are pretty low.
-
-```
-> Killed
-> Jack-in process exited. Status: 137
-
-colima stop
-colima start -c 4 -m 16
-```
-
-## Alternate setup: VSCode: hot reload on save
+## Alternate docker setup: Connecting to docker yourself
 
 Run the workshop
 
@@ -90,49 +82,46 @@ It will say it can't open the browser, do it yourself:
 
 Open [localhost:9500](http://localhost:9500) in the browser.
 
-To be able to edit files inside the docker container:
+To be able to edit files inside the docker container, if you're in VSCode:
 
-- Click the Extensions tab in VSCode
+- Click the Extensions tab
 - Install the `Remote - Containers` extension and the `Calva: Clojure & Clojurescript Interactive Programming` extension
 - A new icon `Remote Explorer` on the left shows running docker containers
-- Right click on the container `torgeir/cljs-workshop` and choose `Connect to container`
-- When the new window opens, click `Open folder` and enter `/root/cljs-workshop`
+- Right click on the container `torgeir/cljs-workshop` and choose `Attach to container`
 
 You are ready to edit sketches!
 
-## Manual setup
+## Alternate manual setup 1: You already have java and clojure
 
-If all else fails:
+### VSCode
 
-Clone the repo and run
+Install `Calva: Clojure & Clojurescript Interactive Programming`
+
+Hit `cmd + shift + p` and start type `jack` and hit enter.
+
+Select `deps.edn + Figwheel Main`, hit enter, wait.
+
+Evaluate something in the browser from your editor with `control+enter`.
+
+### Emacs
+
+Install `cider`.
+
+Run `cider-jack-in-cljs`, select `figwheel-main`, select the `dev` build.
+
+Evalute something with `C-c C-c`.
+
+When your done, `cider-quit`.
+
+## Alternate manual setup 2: If all else fails
+
+- Clone the repo
+- Install java and clojure
+- Run this
 
 ```
 clojure -M -m figwheel.main -b dev
 ```
-
-### Run it, with a REPL on steriods inside your favourite editor
-
-(when not using the docker approach)
-
-#### VSCode
-
-Install `Calva: Clojure & Clojurescript Interactive Programming`
-
-Open `src/sketches/init.cljs`.
-
-Hit `cmd + shift + p` and start type `jack` and hit enter.
-
-Select `deps.edn + Figwheel Main`, hit enter, wait, select `dev`, hit enter.
-
-Evaluate something in the browser from your editor with `ctrl+alt+c e`.
-
-#### Emacs
-
-Install `cider`.
-
-Run `cider-jack-in-cljs`
-
-Evalute something with `C-c C-c`
 
 ## Installing clojure
 
@@ -202,6 +191,18 @@ docker push torgeir/cljs-workshop:latest
 ```
 
 It deploys to https://hub.docker.com/repository/docker/torgeir/cljs-workshop
+
+## Troubleshooting
+
+If jack in fails with an error like this, make sure you gave colima/docker desktop enough cpu and memory, the defaults are pretty low.
+
+```
+> Killed
+> Jack-in process exited. Status: 137
+
+colima stop
+colima start -c 4 -m 16
+```
 
 ## Resources
 
