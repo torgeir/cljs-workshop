@@ -43,9 +43,9 @@ Wait through the following, and ignore the prompt asking to open port localhost:
 > 
 > [Figwheel:WARNING] ...
 
-When you see
+When you see this, or are prompted to open it
 
-> Your application running on port 9500 is available.
+> Starting Server at http://localhost:9500
 
 - Click to open the url in your browser
 
