@@ -83,6 +83,7 @@
   "Returns the initial state to use for the update-render loop."
   []
   (apply q/background (:background palette))
+  ;; (q/frame-rate 0.2)
   (q/frame-rate 1000)
   {:first-draw true
    :n          1
@@ -90,6 +91,9 @@
                  "F"
                  (lindenmayer.data/cool-trees 1)
                  5)})
+
+(comment
+  (js/location.reload))
 
 
 (defn create
@@ -105,6 +109,9 @@
         :setup sketch-setup
         :update sketch-update
         :draw sketch-draw
+        ;; change update and draw to these two to draw the whole tree at once
+        ;; :update identity
+        ;; :draw sketch-draw-all
         :key-pressed save-image))
     1000))
 
