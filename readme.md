@@ -186,7 +186,7 @@ docker login -u torgeir
 Build and deploy
 
 ```sh
-docker build . -t torgeir/cljs-workshop:latest
+docker build --no-cache . -t torgeir/cljs-workshop:latest
 docker push torgeir/cljs-workshop:latest
 ```
 
