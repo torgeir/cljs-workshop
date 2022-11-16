@@ -28,7 +28,7 @@ git clone git@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
 When you are greeted by Calva
 
 - Open `src/help/tutorial.cljs`.
-- Hit `cmd + shift + p` and start type `jack`, hit enter.
+- Hit `cmd + shift + p` and start type `start project repl`, hit enter.
 - Select `deps.edn + Figwheel Main`, hit enter
 
 **Step 4**
