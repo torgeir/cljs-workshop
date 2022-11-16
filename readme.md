@@ -216,3 +216,10 @@ https://clojurescript.org/guides/quick-start
 https://kgolid.github.io/chromotome-site/
 
 - Quil API http://quil.info/api
+
+- More on Cljs
+https://practical.li/clojurescript/
+
+- Generative art using perlin noise explained
+https://www.bekk.christmas/post/2019/13/functional-generative-art-using-clojurescript
+
