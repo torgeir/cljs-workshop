@@ -15,7 +15,7 @@ A ClojureScript generative art playground, with a repl and hot reloading support
 - Clone and open the repo in vscode
 
 ```sh
-git clone git@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
+git clone https@github.com:torgeir/cljs-workshop.git && cd cljs-workshop && code .
 ```
 
 **Step 2**
