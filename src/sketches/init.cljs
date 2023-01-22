@@ -27,4 +27,7 @@
 
 ;; change this number to change
 ;; what sketch is rendered
-(defonce s (create-sketch 0))
+(defonce s (create-sketch 2))
+
+(comment
+  (js/location.reload))

@@ -8,29 +8,28 @@
             [goog.events.EventType :as EventType]
             ))
 
+
 (defn map-vals [f m]
-  (into {} (map (fn [[k v]] [k (f v)]) (seq m))))
+  (into {}
+        (map (fn [[k v]] [k (f v)])
+             (seq m))))
 
 
 (defn debug [v & [desc]]
   (do
     (println (or
               (and (map? v)
-                   (or
-                    (and desc (str desc ":")) "")
-                   (map-vals (fn [v] (.toFixed v 3)) v)
-                   )
+                   (or (and desc (str desc ":")) "")
+                   (map-vals (fn [v] (.toFixed v 3)) v))
               (and desc (str desc ": " v))
               v))
     v))
 
 
 (def window js/window)
-
-
 (def body (.-body js/document))
-
-
+(def w (.-clientWidth body))
+(def h (.-clientHeight body))
 (defn size []
   [(.-clientWidth body)
    (.-clientHeight body)])
@@ -50,44 +49,47 @@
                 [165 32 250]
                 [196 106 251]]})
 
+(def rand-shift
+  (let [times (rand-int 3)
+        shifted (partial iterate (partial map shift))]
+    #(nth (shifted %) times)))
+
 
 (defn particle [index]
-  {:id      index ;; idea: set id equal to color-index?
-   :x       (rand (q/width))
-   :y       (rand (q/height))
-   :vx      0
-   :vy      0
+  {:id     index ;; idea: set id equal to color-index?
+   :x      (rand (q/width))
+   :y      (rand (q/height))
+   :vx     0
+   :vy     0
+   :dir    0
    :time   (rand-int 100000)
-   :adir    0
-   :color-index (rand-int (count (:colors palette)))})
+   :color  (rand-nth (rand-shift (:colors palette)))})
 
 
 (defn particles [n]
   (map particle (range n)))
 
 
-(defn update-pos [curr delta max]
-  (mod (+ curr delta)
-       max))
-
-
-(defn update-vel [curr delta]
-  (/ (+ curr delta) 2))
-
-
-(defn update-acc [x y id t angle noise uniqueness]
-  (*
-   (+ (q/noise (* x noise) (* y noise) id)
-      (* (q/noise (* x noise) (* y noise) id) uniqueness))
-   angle))
-
-
 (defn clamp-sin [v]
   (+ 0.5 (* 0.5 (Math/sin v))))
+
 
 (defn dec-or-zero [v]
   (if (pos? v) (- v 100) 0))
 
+
+(defn update-pos [curr delta]
+  (+ curr delta))
+
+(defn update-vel [curr dx]
+  (/ (+ curr dx) 2))
+
+(defn update-acc [x y z t angle noise uniqueness]
+  (let [n (q/noise (* x noise) (* y noise))]
+    (* (+ n
+          (* (q/noise (* x noise) (* y noise) (* z noise))
+             uniqueness))
+       angle)))
 
 (defn sketch-update
   "Returns the next state to render. Receives the current state as a paramter."
@@ -100,70 +102,54 @@
   (-> state 
       (update-in [:time] inc)
       (update-in [:clear] dec-or-zero)
-      (update-in [:uniqueness] (fn [u]
-                                 u))
+      (update-in [:uniqueness] identity)
       (assoc :particles
              (map (fn [p]
-                    (assoc p
-                           :time (inc (:time p))
-                           :x    (update-pos (:x p)
-                                             (* speed (:vx p))
-                                             (q/width))
-                           :y    (update-pos (:y p)
-                                             (* speed (:vy p))
-                                             (q/height))
-                           :vx   (update-vel (:vx p) (Math/cos (:adir p)))
-                           :vy   (update-vel (:vx p) (Math/sin (:adir p)))
-                           :adir (update-acc
-                                  (:x p) (:y p) (:id p) (:time p)
-                                  angle
-                                  noise
-                                  uniqueness)))
+                    (let [x (mod (update-pos (:x p) (* speed (:vx p))) (q/width))
+                          y (mod (update-pos (:y p) (* speed (:vy p))) (q/height))
+                          time (inc (:time p))]
+                      (assoc p
+                             :time time
+                             :x    x
+                             :y    y
+                             :vx   (update-vel (:vx p) (Math/cos (:dir p)))
+                             :vy   (update-vel (:vy p) (Math/sin (:dir p)))
+                             :dir  (update-acc x y (:id p) time angle noise uniqueness))))
                   particles))))
 
-
-(defn tweak [p t palette opacity size]
-  (assoc p
-         :color (conj (nth (:colors palette)
-                           (:color-index p))
-                      (* opacity
-                         ;; (* 0.2 (clamp-sin (/ t 100)))
-                         ))
-         :size (+ size
-                  (clamp-sin (/ t 1000)))))
 
 (defn sketch-draw
   "Draws the current state to the canvas. Called on each iteration after sketch-update."
   [{:keys [time clear size particles palette opacity] :as state}]
   (when (pos? clear)
-    (let [padding 200]
+    (let [zone 200]
       (q/fill 0)
-      (q/rect (- (q/width) (/ (q/width) 2) clear (/ padding 2))
-              (/ (q/height) -2)
-              padding
+      (q/rect (- (q/width) clear (/ zone 2))
+              0
+              zone
               (q/height))))
 
-  ;; (if (zero? (mod time 100))
-  ;;   (debug (clamp-sin (/ time 300)) "t/300"))
-
   (doseq [p particles]
-    (let [p (tweak p (:time p) palette opacity size)]
+    (let [p (assoc p
+                   :color (conj (:color p) opacity)
+                   :size (+ size (clamp-sin (/ time 1000))))]
       (apply q/fill (:color p))
       (q/ellipse
-       (+ (:x p) (/ (q/width)  -2))
-       (+ (:y p) (/ (q/height) -2))
+       (:x p)
+       (:y p)
        (:size p)
        (:size p)))))
 
 
 (def initial-state
   {:time 0
-   :noise 0.002
-   :angle (* 1.05 Math/PI)
-   :size 1
+   :noise (+ 0.002 (rand 0.03))
+   :angle (rand (* 2 Math/PI))
+   :size 2
    :uniqueness 1
-   :speed 2
-   :opacity 2
+   :speed 1
+   ;; :opacity 255
+   :opacity 5
    :palette palette})
 
 
@@ -173,7 +159,8 @@
   (q/no-stroke)
   (apply q/background (:background palette))
   (merge
-   {:particles (particles 800)}
+   {:particles (particles 500)}
+   ;; {:particles (particles 1)}
    initial-state))
 
 
@@ -188,13 +175,14 @@
 
 (defn key-pressed
   [state e]
+  (println "key" (:key e))
   (let [new-state
         (condp = (:key e)
           :S (-> state
                  (update-in [:palette :colors] #(map shuffle %)))
           :c (assoc state :clear (q/width))
           :R (merge state initial-state)
-          :C (update-in state [:palette :colors] #(map shift %))
+          :C (update-in state [:particles] (partial map (fn [particle] (update-in particle [:color] shift))))
           (keyword "m") (update state :uniqueness (partial + -0.01))
           (keyword "M") (update state :uniqueness (partial + 0.01))
           (keyword "-") (update state :speed dec)
@@ -204,7 +192,6 @@
           (keyword ":") (update state :size dec)
           (keyword ".") (update state :size inc)
           (do
-            (println "key" (:key e))
             (save-image state e)))]
     (debug (select-keys
             new-state
@@ -220,7 +207,7 @@
   (q/defsketch perlin-flow
     :host canvas
     :size (size)
-    :renderer :p3d
+    :renderer :p2d
     :settings (fn []
                 (q/pixel-density 2)
                 (q/random-seed 666)
