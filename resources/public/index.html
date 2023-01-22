@@ -8,7 +8,7 @@
   "width=device-width, initial-scale=1">
   <link rel="shortcut icon" type="image/x-icon" href=
   "data:image/x-icon;,">
-  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.classless.min.css">
   <link rel="stylesheet" type="text/css" href="index.css">
   <style>
    :root {
@@ -20,62 +20,87 @@
    }
    #sketch {
        position: absolute;
-       top: -1;
-       left: -1;
-       right: -1;
-       bottom: -1;
+       top: -2px;
+       left: -2px;
+       right: -2px;
+       bottom: -2px;
    }
    #content {
        position: absolute;
-       top: 1rem; right: 0; left: 0;
-       margin: 0 auto;
+       z-index: 1;
+       top: 0; right: 0; left: 0;
+       margin: 10rem auto 0rem auto;
        width: 100%;
        max-width: 800px;
        min-height: 1vh;
 
        background: var(--bg);
-       font-size: 16px;
        text-align: left;
        padding: calc(var(--block-spacing-vertical)/ 1.5) var(--block-spacing-horizontal);
 
        box-shadow: var(--card-box-shadow);
    }
 
+   p {
+       color: var(--muted-color);
+       font-size: var(--font-size);
+   }
 
    @keyframes glitch-in {
-       0%  {transform: translate(0); opacity: 0;}
-       20% {transform: translate(  5px,   0px); filter: hue-rotate(90deg) invert(0.5)}
-       30% {transform: translate( -5px,   0px)}
-       40% {transform: translate( 15px,   0px);}
-       50% {transform: translate(  5px,   0px)}
-       60% {transform: translate( 35px,   0px)}
-       70% {transform: translate(  0px, -20px); filter: hue-rotate(0deg)}
-       80% {transform: translate( 30px,   0px);}
-       to  {transform: translate(0) opacity: 1;}
+       0%  {transform: translate3d(0, 0, 0); opacity: 0;}
+       20% {transform: translate3d(  5px, 0, 0); filter: hue-rotate(90deg) saturate(20)}
+       30% {transform: translate3d( -5px, 0, 0)}
+       40% {transform: translate3d( 15px, 0, 0);}
+       50% {transform: translate3d(  5px, 0, 0)}
+       60% {transform: translate3d( 35px, 0, 0); }
+       70% {transform: translate3d(  0px, 0, 0); filter: hue-rotate(0deg)}
+       80% {transform: translate3d( 90px, 0, 0);}
+       to  {transform: translate3d(0, 0, 0) opacity: 1;}
    }
 
    @keyframes glitch-out {
-       0%  {transform: translate(0); opacity: 1; filter: invert(1)}
-       20% {transform: translate(  5px,   0px); filter: hue-rotate(90deg)}
-       30% {transform: translate( -5px,   0px)}
-       40% {transform: translate( 15px,   0px);}
-       50% {transform: translate(  5px,   0px)}
-       60% {transform: translate(-25px,   0px)}
-       70% {transform: translate(  0px, -20px); filter: hue-rotate(0deg)}
-       80% {transform: translate(-60px,   0px); filter: invert(0.3)}
-       to  {transform: translate(0) opacity: 0;}
+       0%  {transform: translate3d(0, 0, 0); opacity: 1; filter: invert(0.5)}
+       20% {transform: translate3d(  5px, 0, 0); filter: hue-rotate(90deg) saturate(20)}
+       30% {transform: translate3d( -5px, 0, 0)}
+       40% {transform: translate3d( 15px, 0, 0)}
+       50% {transform: translate3d(  5px, 0, 0)}
+       60% {transform: translate3d(-25px, 0, 0);}
+       70% {transform: translate3d(-25px, 0, 0); filter: hue-rotate(0deg)}
+       80% {transform: translate3d(-40px, 0, 0); filter: invert(0.3)}
+       to  {transform: translate3d(0, 0, 0); opacity: 0;}
    }
 
    #content {
        opacity: 0;
-       animation: glitch-out .3s cubic-bezier(.25, .46, .45, .94)
+       animation: glitch-out .2s cubic-bezier(.25, .46, .45, .94)
    }
    #content:hover {
        opacity: 1;
-       animation: glitch-in .3s cubic-bezier(.25, .46, .45, .94)
+       animation: glitch-in .2s cubic-bezier(.25, .46, .45, .94)
    }
-
-
+   #buttons {
+       z-index: 1;
+       position: fixed;
+       height: 4rem;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       opacity: 0.1;
+       animation: glitch-in .2s cubic-bezier(.25, .46, .45, .94)
+       padding:
+           calc(var(--block-spacing-vertical)/ 1.5)
+           var(--block-spacing-horizontal);
+       display: flex;
+       flex-direction: row;
+   }
+   #content:hover + #buttons {
+       z-index: 0;
+       opacity: 0;
+       animation: glitch-out .2s cubic-bezier(.25, .46, .45, .94)
+   }
+   #buttons:hover {
+       opacity: 1;
+   }
   </style>
 </head>
 <body>
@@ -225,6 +250,10 @@
     dolore eu fugiat nulla pariatur. Excepteur sint occaecat
     cupidatat non proident, sunt in culpa qui officia deserunt
     mollit anim id est laborum.</p>
+  </div>
+  <div id="buttons">
+      <button>-</button>
+      <button>+</button>
   </div>
   <script src="cljs-out/dev-main.js"></script>
 </body>

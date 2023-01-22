@@ -149,7 +149,7 @@
 (defn initial-state []
   {:bg false 
    :time 0
-   :noise (+ 0.002 (rand 0.03))
+   :noise (+ 0.02 (rand 0.01))
    :angle (rand (* 2 Math/PI))
    :size 3
    :uniqueness 1
@@ -218,14 +218,16 @@
      (let [[x y] (size)
            size [x
                  ;; y
-                 (.-scrollHeight (.querySelector (.-body js/document) "#content"))
+                 (let [el (.querySelector (.-body js/document) "#content")]
+                   (+ (.-scrollHeight el)
+                      (js/parseInt (.getPropertyValue (.getComputedStyle js/window el) "margin-top"))))
                  ]]
        (q/defsketch perlin-flow
          :host canvas
          :size size
          :renderer :p2d
          :settings (fn []
-                     (q/pixel-density 1)
+                     (q/pixel-density 2)
                      (q/random-seed 666)
                      (q/noise-seed 666))
          :setup sketch-setup
