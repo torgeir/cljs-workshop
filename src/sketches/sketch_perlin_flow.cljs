@@ -150,12 +150,12 @@
   {:bg false 
    :time 0
    :noise (+ 0.02 (rand 0.01))
-   :angle (rand (* 2 Math/PI))
-   :size 3
+   :angle (+ Math/PI (rand Math/PI))
+   :size 4
    :uniqueness 1
    :speed 2
    ;; :opacity 255
-   :opacity 5
+   :opacity 10
    :palette palette})
 
 

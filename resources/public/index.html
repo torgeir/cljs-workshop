@@ -49,12 +49,12 @@
    @keyframes glitch-in {
        0%  {transform: translate3d(0, 0, 0); opacity: 0;}
        20% {transform: translate3d(  5px, 0, 0); filter: hue-rotate(90deg) saturate(20)}
-       30% {transform: translate3d( -5px, 0, 0)}
-       40% {transform: translate3d( 15px, 0, 0);}
-       50% {transform: translate3d(  5px, 0, 0)}
-       60% {transform: translate3d( 35px, 0, 0); }
-       70% {transform: translate3d(  0px, 0, 0); filter: hue-rotate(0deg)}
-       80% {transform: translate3d( 90px, 0, 0);}
+       30% {transform: translate3d(  -5px, 0, 0)}
+       40% {transform: translate3d(  15px, 0, 0)}
+       50% {transform: translate3d(   5px, 0, 0)}
+       60% {transform: translate3d(  35px, 0, 0)}
+       70% {transform: translate3d(   0px, 0, 0); filter: hue-rotate(0deg)}
+       80% {transform: translate3d( 200px, 0, 0)}
        to  {transform: translate3d(0, 0, 0) opacity: 1;}
    }
 
@@ -64,7 +64,7 @@
        30% {transform: translate3d( -5px, 0, 0)}
        40% {transform: translate3d( 15px, 0, 0)}
        50% {transform: translate3d(  5px, 0, 0)}
-       60% {transform: translate3d(-25px, 0, 0);}
+       60% {transform: translate3d(-25px, 0, 0)}
        70% {transform: translate3d(-25px, 0, 0); filter: hue-rotate(0deg)}
        80% {transform: translate3d(-40px, 0, 0); filter: invert(0.3)}
        to  {transform: translate3d(0, 0, 0); opacity: 0;}
@@ -74,6 +74,7 @@
        opacity: 0;
        animation: glitch-out .2s cubic-bezier(.25, .46, .45, .94)
    }
+   #content:has(*:focus),
    #content:hover {
        opacity: 1;
        animation: glitch-in .2s cubic-bezier(.25, .46, .45, .94)
@@ -93,11 +94,13 @@
        display: flex;
        flex-direction: row;
    }
+   #content:has(*:focus) + #buttons,
    #content:hover + #buttons {
        z-index: 0;
        opacity: 0;
        animation: glitch-out .2s cubic-bezier(.25, .46, .45, .94)
    }
+   #buttons:has(*:focus),
    #buttons:hover {
        opacity: 1;
    }
@@ -106,6 +109,7 @@
 <body>
   <div id="sketch"></div>
   <div id="content" class="intern">
+    <a role="link" tabindex="0">Main content</a>
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
     do eiusmod tempor incididunt ut labore et dolore magna aliqua.
     Ut enim ad minim veniam, quis nostrud exercitation ullamco
