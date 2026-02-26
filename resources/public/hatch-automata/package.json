@@ -17,7 +17,7 @@
     "isometric-automata": "^1.2.0"
   },
   "devDependencies": {
-    "rollup": "^3.29.5",
+    "rollup": "^3.30.0",
     "rollup-plugin-node-resolve": "^3.4.0"
   }
 }
